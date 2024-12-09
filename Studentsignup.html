@@ -38,7 +38,25 @@
         border-right: none;
         border-bottom: solid #000000 1px;
         box-shadow: 0 0 0;
-        width: 70%;
+        width: 100%;
+    }
+
+    #imgcontainer{
+        background-image: url('base.jpg');
+        width: 50%;
+        height: 600px;
+        border-radius: 15px;
+        background-size: cover;
+    }
+
+    #college{
+    position: relative;
+    display: inline-block;
+    background-color: #BCCCDC;
+    color: white;
+    padding: 16px;
+    border-radius: 15px;
+    text-align: center;
     }
 
 </style>
@@ -48,14 +66,23 @@
     </header>
     
     <div class="background">
-        <div style="background-image: url('base.jpg'); width: 50%; height: 600px; border-radius: 15px; background-size: cover;"></div>
+        <div id="imgcontainer"></div>
         <div style="padding-left: 5%;">
             <nav class="title">Create an Account</nav> 
-             <p style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Let's get started</p>
-             <div style="margin-top:60px;">
+            <p style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Let's get started</p>
+            <div style="margin-top:60px;">
                 <label for="name"><p style="font-family:Georgia, 'Times New Roman', Times, serif;">Name</p></label>
                 <input type="text" id="name" name="name" required>
-        </div>
+            </div>
+            <div style="margin-top: 30px;">
+                <label for="college">College:</label>
+                <select style="margin-top: 10px;" id="college" name="college" required>
+                  <option value="" disabled selected>Select</option>
+                  <option value="GGITS">Gyan Ganga Institute Of Technology And Sciences</option>
+                  <option value="GGCT">Gyan Ganga College Of Technology</option>
+                  <option value="GGCE">Gyan Ganga College of Excellence</option>
+                </select>
+              </div>
         </div>
 
     </div>
