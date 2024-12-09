@@ -60,7 +60,7 @@
   </div>
 
   <script>
-    document.getElementById('registrationForm').addEventListener('submit', function (event) {
+    document.getElementById('registrationForm').addEventListener('submit', async function (event) {
   event.preventDefault(); // Prevent the page from refreshing
 
   // Collect form data
@@ -71,24 +71,26 @@
   formData.forEach((value, key) => {
     data[key] = value;
   });
+  try {
+      const response = await fetch('http://localhost:3000/api/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
 
-  // Send the data to the backend
-  fetch('http://localhost:3000/register', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(data)
-  })
-  .then(response => response.json())
-  .then(data => {
-    console.log('Success:', data);
-    alert('Registration successful!');
-  })
-  .catch((error) => {
-    console.error('Error:', error);
-    alert('There was an error!');
-  });
+      if (response.ok) {
+        const responseData = await response.json();
+        alert(responseData.message || 'Registration successful!');
+        // Redirect to another page after successful submission
+        window.location.href = 'www.google.com';
+      } else {
+        const errorData = await response.json();
+        alert(errorData.error || 'There was an issue with the registration!');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      alert('An unexpected error occurred. Please try again.');
+    }
 });
   </script>
 </body>
