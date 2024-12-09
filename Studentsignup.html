@@ -49,15 +49,45 @@
         background-size: cover;
     }
 
-    #college{
+    .college{
     position: relative;
     display: inline-block;
-    background-color: #BCCCDC;
+    background-color: #3C3D37;
     color: white;
     padding: 16px;
     border-radius: 15px;
     text-align: center;
     }
+
+    #myInput{
+        background: transparent;
+        outline-style: none;
+        border-top: none;
+        border-left: none;
+        border-right: none;
+        border-bottom: solid #000000 1px;
+        box-shadow: 0 0 0;
+        width: 100%;
+    }
+
+    .cta-button{
+        padding: 10px 20px;
+        background-color: black;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        margin-top: 10%;
+        margin-left: 10%;
+        width: 80%;
+    }
+
+    .cta-button:hover {
+    background-color: #333;
+    }
+
+ 
 
 </style>
 <body>
@@ -77,20 +107,41 @@
             <p style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Let's get started</p>
             <div style="margin-top:60px;">
                 <label for="name"><p style="font-family:Georgia, 'Times New Roman', Times, serif;">Name</p></label>
-                <input type="text" id="name" name="name" required>
+                <input type="text" id="name" name="name" placeholder="Enter Your Name" required>
             </div>
             <div style="margin-top: 30px;">
-                <label for="college">College:</label>
-                <select style="margin-top: 10px;" id="college" name="college" required>
-                  <option value="" disabled selected>Select</option>
-                  <option value="GGITS">Gyan Ganga Institute Of Technology And Sciences</option>
-                  <option value="GGCT">Gyan Ganga College Of Technology</option>
-                  <option value="GGCE">Gyan Ganga College of Excellence</option>
+                <label for="college"></label>
+                <select style="margin-top: 10px;" class="college" name="college" required>
+                    <option value="" disabled selected>Your College</option>
+                    <option value="GGITS">Gyan Ganga Institute Of Technology And Sciences</option>
+                    <option value="GGCT">Gyan Ganga College Of Technology</option>
+                    <option value="GGCE">Gyan Ganga College of Excellence</option>
                 </select>
               </div>
+
+              <div style="margin-top:60px;">
+                <label for="password"><p style="font-family:Georgia, 'Times New Roman', Times, serif;">Password</p></label>
+                <input type="password" id="myInput" name="password" maxlength="16" placeholder="Max 16 characters" required><br><br>
+                <input type="checkbox" onclick="myFunction()">Show Password
+            </div>
+
+           <a href=""><button class="cta-button">Create Account</button></a>
+
+
         </div>
 
     </div>
        
 </body>
+
+<script>
+    function myFunction() {
+      var x = document.getElementById("myInput");
+      if (x.type === "password") {
+        x.type = "text";
+      } else {
+        x.type = "password";
+      }
+    }
+    </script>
 </html>
