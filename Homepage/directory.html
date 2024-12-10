@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alumni Directory</title>
     <style>
-      
+
     body {
     font-family: Arial, sans-serif;
     background-color: white;
@@ -53,15 +53,29 @@
   .cta-button:hover {
     background-color: #333;
   }
+
+  .background{
+        display: flex;
+        background-color: #fefefe;
+        margin-top: 25px;
+        padding: 50px;
+        border-radius: 15px;
+        margin-left: 15%;
+        margin-right: 15%;
+    }
         
         .alumni-container {
             display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #fefefe;
+            margin-top: 25px;
             flex-wrap: wrap;
             gap: 20px;
         }
 
         .alumni-card {
-            width: 300px;
+            width: 400px;
             border: 1px solid #ccc;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -112,7 +126,7 @@
 
   </header>
 
-    <h1 style="margin-left: 50%;">Alumni Directory</h1>
+    <h1 style="text-align: center;">Alumni Directory</h1>
     <div class="alumni-container" id="alumniContainer"></div>
 
     <script>
