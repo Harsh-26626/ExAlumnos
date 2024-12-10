@@ -11,6 +11,6 @@ const connectDB = () => {
         console.error('MongoDB connection error:', err);
         process.exit(1); // Exit the process if MongoDB connection fails
       });
-  };
-  
-  module.exports = connectDB; // Export the connectDB function
+};
+
+module.exports = connectDB;

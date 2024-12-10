@@ -1,16 +1,38 @@
 const mongoose = require('mongoose');
 
-// Define User Schema
-const UserSchema = new mongoose.Schema({
-  name: { type: String, required: true },
-  college: { type: String, required: true },
-  branch: { type: String, required: true },
-  year: { type: Number, required: true },
-  email: { type: String, required: true, unique: true },
-  password: { type: String, required: true },
-  status: { type: String, default: 'pending' }, // Added status field for approval
+const userSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: true,
+  },
+  college: {
+    type: String,
+    required: true,
+  },
+  branch: {
+    type: String,
+    required: true,
+  },
+  year: {
+    type: String,
+    required: true,
+  },
+  email: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+  password: {
+    type: String,
+    required: true,
+  },
+  status: {
+    type: String,
+    enum: ['pending', 'approved'],
+    default: 'pending',
+  },
 });
 
-const User = mongoose.model('User', UserSchema);
+const User = mongoose.model('User', userSchema);
 
-module.exports = User; // Export the model
+module.exports = User;

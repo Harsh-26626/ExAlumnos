@@ -2,37 +2,6 @@ const express = require('express');
 const router = express.Router();
 const User = require('../Models/user');
 const crypto = require('crypto');
-const nodemailer = require('nodemailer');
-require('dotenv').config();
-
-// Create a transporter for nodemailer
-const transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-      user: process.env.EMAIL_USER,
-      pass: process.env.EMAIL_PASS,
-    },
-  });
-
-// Send approval email with the approval link
-const sendApprovalEmail = (userEmail, userName, approvalToken) => {
-  const approvalLink = `http://localhost:3000/api/approve/${approvalToken}`;
-
-  const mailOptions = {
-    from: 'vinay2006.vkc@gmail.com',
-    to: userEmail,
-    subject: 'Please Approve the User',
-    text: `Hello Admin,\n\nA new user has registered. Click the following link to approve the user:\n\n${approvalLink}\n\nBest regards,\nAdmin`,
-  };
-
-  transporter.sendMail(mailOptions, (error, info) => {
-    if (error) {
-      console.log('Error sending email:', error);
-    } else {
-      console.log('Approval email sent:', info.response);
-    }
-  });
-};
 
 // Registration route
 router.post('/register', async (req, res) => {
@@ -48,23 +17,18 @@ router.post('/register', async (req, res) => {
       return res.status(400).json({ error: 'Email is already registered!' });
     }
 
-    const registrationToken = crypto.randomBytes(32).toString('hex'); // Generate a unique token
-
-    const newUser = new User({ 
-      name, 
-      college, 
-      branch, 
-      year, 
-      email, 
-      password, 
-      status: 'pending',
-      approvalToken: registrationToken, // Store the token
+    // Register user as pending by default (no approval token needed)
+    const newUser = new User({
+      name,
+      college,
+      branch,
+      year,
+      email,
+      password,
+      status: 'pending', // User starts with a pending status
     });
     await newUser.save();
 
-    // Send the approval email with the token
-    sendApprovalEmail(newUser.email, newUser.name, registrationToken);
-    
     res.json({ message: 'Registration successful! Please wait for admin approval.' });
   } catch (error) {
     console.error('Error saving user:', error);
@@ -72,21 +36,36 @@ router.post('/register', async (req, res) => {
   }
 });
 
+// Fetch pending users route
+router.get('/pending', async (req, res) => {
+  try {
+    const pendingUsers = await User.find({ status: 'pending' });
+    res.json(pendingUsers); // Return the list of pending users
+  } catch (error) {
+    console.error('Error fetching pending users:', error);
+    res.status(500).json({ error: 'An error occurred while fetching pending users.' });
+  }
+});
+
 // Admin approval route
-router.get('/approve/:token', async (req, res) => {
-  const { token } = req.params;
+router.put('/approve/:userId', async (req, res) => {
+  const { userId } = req.params;
 
   try {
-    // Find the user by the approval token
-    const user = await User.findOne({ approvalToken: token });
+    // Find the user by ID
+    const user = await User.findById(userId);
 
     if (!user) {
-      return res.status(404).json({ error: 'Invalid or expired approval token!' });
+      return res.status(404).json({ error: 'User not found!' });
+    }
+
+    // Check if the user is already approved
+    if (user.status === 'approved') {
+      return res.status(400).json({ error: 'User is already approved!' });
     }
 
     // Update user status to 'approved'
     user.status = 'approved';
-    user.approvalToken = undefined;  // Clear the approval token after approval
     await user.save();
 
     res.json({ message: 'User has been approved!' });
@@ -96,29 +75,31 @@ router.get('/approve/:token', async (req, res) => {
   }
 });
 
-// Login route
-router.post('/login', async (req, res) => {
-  const { email, password } = req.body;
+// Reject user route (optional)
+router.put('/reject/:userId', async (req, res) => {
+  const { userId } = req.params;
 
   try {
-    const user = await User.findOne({ email });
+    // Find the user by ID
+    const user = await User.findById(userId);
 
     if (!user) {
-      return res.status(400).json({ error: 'User not found!' });
+      return res.status(404).json({ error: 'User not found!' });
     }
 
-    if (user.status === 'pending') {
-      return res.status(400).json({ error: 'Your account is still pending approval!' });
+    // Check if the user is already rejected
+    if (user.status === 'rejected') {
+      return res.status(400).json({ error: 'User has already been rejected!' });
     }
 
-    if (user.password !== password) {
-      return res.status(400).json({ error: 'Invalid credentials!' });
-    }
+    // Update user status to 'rejected'
+    user.status = 'rejected';
+    await user.save();
 
-    res.json({ message: 'Login successful!' });
+    res.json({ message: 'User has been rejected!' });
   } catch (error) {
-    console.error('Error during login:', error);
-    res.status(500).json({ error: 'An error occurred during login.' });
+    console.error('Error rejecting user:', error);
+    res.status(500).json({ error: 'An error occurred while rejecting the user.' });
   }
 });
 
