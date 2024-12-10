@@ -133,17 +133,6 @@
         width: 100%;    
     }
 
-    #myInput{
-        background: transparent;
-        outline-style: none;
-        border-top: none;
-        border-left: none;
-        border-right: none;
-        border-bottom: solid #000000 1px;
-        box-shadow: 0 0 0;
-        width: 100%;
-    }
-
     .cta-button4{
         padding: 10px 20px;
         background-color: black;
@@ -161,7 +150,7 @@
     background-color: #333;
     }/* Your styles */
 
-    .password{
+    #password{
         background: transparent;
         outline-style: none;
         border-top: none;
@@ -171,6 +160,18 @@
         box-shadow: 0 0 0;
         width: 100%;
     }
+
+    #confirmPassword{
+        background: transparent;
+        outline-style: none;
+        border-top: none;
+        border-left: none;
+        border-right: none;
+        border-bottom: solid #000000 1px;
+        box-shadow: 0 0 0;
+        width: 100%;
+    }
+
 </style>
 <body>
     <header class="navbar">
@@ -265,8 +266,8 @@
                 <div style="margin-top:25px;">
                     <label for="password"><p style="font-family:Georgia, 'Times New Roman', Times, serif;">Password</p></label>
                     <input type="password" id="password" name="password" maxlength="16" placeholder="Max 16 characters" required><br><br>
-                    <label for="confirmPassword">Confirm Password:</label>
-                    <input type="password" id="confirmPassword" name="confirmPassword" required>
+                    <label for="confirmPassword"><p style="font-family:Georgia, 'Times New Roman', Times, serif;">Confirm Password</p></label>
+                    <input type="password" id="confirmPassword" name="confirmPassword" maxlength="16" placeholder="Max 16 characters" required><br><br>
                     <input type="checkbox" onclick="myFunction()">Show Password
                 </div>
 
