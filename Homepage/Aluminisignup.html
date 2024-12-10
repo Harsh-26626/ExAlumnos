@@ -177,7 +177,7 @@
     <header class="navbar">
         <div class="site-name">
             <nav class="nav-links">
-                <div class="nav-links" onclick="window.location.href='index.html'">ExAlumnos</div>
+                <div class="nav-links" style="cursor: pointer;" onclick="window.location.href='index.html'">ExAlumnos</div>
                 <a href="directory.html" style="margin-left: 40px;">Alumni Directory</a>
                 <a href="Studentsignup.html">Register Here</a>
                 <a href="#">Chat</a>
@@ -311,8 +311,6 @@
             if (response.ok) {
                 const responseData = await response.json();
                 alert(responseData.message || 'Registration successful!');
-                // Redirect to another page after successful submission
-                window.location.href = 'www.google.com';
             } else {
                 const errorData = await response.json();
                 alert(errorData.error || 'There was an issue with the registration!');

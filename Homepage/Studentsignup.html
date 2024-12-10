@@ -6,161 +6,171 @@
     <title>Login as Student</title>
 </head>
 <style>
-
-    body {
-        margin: 0;
-        font-family: Arial, sans-serif;
-        background-color: #F8F8FF;
-    }
-
-    .navbar {
-    display: flex;
-    align-items:center;
-    justify-content: space-between;
-    padding: 0 40px;
-    height: 60px;
-    border-left: 4px solid #007bff; /* Blue vertical line */
-  }
-  
-  .site-name {
-    font-size: 20px;
-    font-weight: normal;
-  }
-  
-  .nav-links {
-    display: flex;
-    gap: 20px;
-  }
-  
-  .nav-links a {
-    text-decoration: none;
-    justify-content: space-between;
-    color: black;
-    font-size: 16px;
-    margin-left: 15px;
-    margin-top: 3px;
-  }
-  
-  .cta-button {
-    padding: 10px 20px;
-    background-color: black;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-  }
-  
-  .cta-button:hover {
-    background-color: #333;
+  body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #F8F8FF;
   }
 
-    .title{
-            margin-top: 60px;
-            text-decoration: solid;
-            font-size: 2em;
-            font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    }
+  .navbar {
+  display: flex;
+  align-items:center;
+  justify-content: space-between;
+  padding: 0 40px;
+  height: 60px;
+  border-left: 4px solid #007bff;
+}
 
-    .background{
-        display: flex;
-        background-color: #fefefe;
-        margin-top: 25px;
-        padding: 50px;
-        border-radius: 15px;
-        margin-left: 15%;
-        margin-right: 15%;
-    }
+.site-name {
+  font-size: 20px;
+  font-weight: normal;
+}
 
-    #name{
-        background: transparent;
-        outline-style: none;
-        border-top: none;
-        border-left: none;
-        border-right: none;
-        border-bottom: solid #000000 1px;
-        box-shadow: 0 0 0;
-        width: 100%;
-    }
+.nav-links {
+  display: flex;
+  gap: 20px;
+}
 
-    #imgcontainer{
-        background-image: url('base.jpg');
-        width: 50%;
-        height: 700px;
-        border-radius: 15px;
-        background-size: cover;
-    }
+.nav-links a {
+  text-decoration: none;
+  justify-content: space-between;
+  color: black;
+  font-size: 16px;
+  margin-left: 15px;
+  margin-top: 3px;
+}
 
-    .college{
-    position: relative;
-    display: inline-block;
-    background-color: #3C3D37;
-    color: white;
-    padding: 16px;
-    border-radius: 15px;
-    text-align: center;
-    }
+.cta-button {
+  padding: 10px 20px;
+  background-color: black;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
 
-    #branch{
-    position: relative;
-    display: inline-block;
-    background-color: #3C3D37;
-    color: white;
-    border-radius: 15px;
-    text-align: center;
-    height: 50px;
-    width: 45%;
-    }
+.cta-button:hover {
+  background-color: #333;
+}
 
-    #year{
-    position: relative;
-    display: inline-block;
-    background-color: #3C3D37;
-    color: white;
-    border-radius: 15px;
-    text-align: center;
-    height: 50px;
-    width: 45%;
-    }
+  .title{
+          margin-top: 60px;
+          text-decoration: solid;
+          font-size: 2em;
+          font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  }
 
-    #email{
-        background: transparent;
-        outline-style: none;
-        border-top: none;
-        border-left: none;
-        border-right: none;
-        border-bottom: solid #000000 1px;
-        box-shadow: 0 0 0;
-        width: 100%;    
-    }
+  .background{
+      display: flex;
+      background-color: #fefefe;
+      margin-top: 25px;
+      padding: 50px;
+      border-radius: 15px;
+      margin-left: 15%;
+      margin-right: 15%;
+  }
 
-    #myInput{
-        background: transparent;
-        outline-style: none;
-        border-top: none;
-        border-left: none;
-        border-right: none;
-        border-bottom: solid #000000 1px;
-        box-shadow: 0 0 0;
-        width: 100%;
-    }
+  #name{
+      background: transparent;
+      outline-style: none;
+      border-top: none;
+      border-left: none;
+      border-right: none;
+      border-bottom: solid #000000 1px;
+      box-shadow: 0 0 0;
+      width: 100%;
+  }
 
-    .cta-button4{
-        padding: 10px 20px;
-        background-color: black;
-        color: white;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        font-size: 16px;
-        margin-top: 10%;
-        margin-left: 10%;
-        width: 80%;
-    }
+  #imgcontainer{
+      background-image: url('base.jpg');
+      width: 50%;
+      height: 700px;
+      border-radius: 15px;
+      background-size: cover;
+  }
 
-    .cta-button4:hover {
-    background-color: #333;
-    }
+  .college{
+  position: relative;
+  display: inline-block;
+  background-color: #3C3D37;
+  color: white;
+  padding: 16px;
+  border-radius: 15px;
+  text-align: center;
+  }
+
+  #branch{
+  position: relative;
+  display: inline-block;
+  background-color: #3C3D37;
+  color: white;
+  border-radius: 15px;
+  text-align: center;
+  height: 50px;
+  width: 45%;
+  }
+
+  #year{
+  position: relative;
+  display: inline-block;
+  background-color: #3C3D37;
+  color: white;
+  border-radius: 15px;
+  text-align: center;
+  height: 50px;
+  width: 45%;
+  }
+
+  #email{
+      background: transparent;
+      outline-style: none;
+      border-top: none;
+      border-left: none;
+      border-right: none;
+      border-bottom: solid #000000 1px;
+      box-shadow: 0 0 0;
+      width: 100%;    
+  }
+
+  .cta-button4{
+      padding: 10px 20px;
+      background-color: black;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      margin-top: 10%;
+      margin-left: 10%;
+      width: 80%;
+  }
+
+  .cta-button4:hover {
+  background-color: #333;
+  }/* Your styles */
+
+  #password{
+      background: transparent;
+      outline-style: none;
+      border-top: none;
+      border-left: none;
+      border-right: none;
+      border-bottom: solid #000000 1px;
+      box-shadow: 0 0 0;
+      width: 100%;
+  }
+
+  #confirmPassword{
+      background: transparent;
+      outline-style: none;
+      border-top: none;
+      border-left: none;
+      border-right: none;
+      border-bottom: solid #000000 1px;
+      box-shadow: 0 0 0;
+      width: 100%;
+  }
 
 </style>
 <body>
@@ -187,18 +197,19 @@
         <div style="padding-left: 5%;">
             <nav class="title">Create an Account</nav> 
             <p style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Let's get started as <b>UnderGrad</b></p>
-            <div style="margin-top:30px;">
-                <label for="name"><p style="font-family:Georgia, 'Times New Roman', Times, serif;">Name</p></label>
-                <input type="text" id="name" name="name" placeholder="Enter Your Name" required>
-            </div>
-            <div style="margin-top: 30px;">
-                <label for="college"></label>
-                <select style="margin-top: 10px;" class="college" name="college" required>
-                    <option value="" disabled selected>Your College</option>
-                    <option value="GGITS">Gyan Ganga Institute Of Technology And Sciences</option>
-                    <option value="GGCT">Gyan Ganga College Of Technology</option>
-                    <option value="GGCE">Gyan Ganga College of Excellence</option>
-                </select>
+            <!-- Registration Form -->
+            <form id="registrationForm">
+              <div style="margin-top:30px;">
+                  <label for="name"><p style="font-family:Georgia, 'Times New Roman', Times, serif;">Name</p></label>
+                  <input type="text" id="name" name="name" placeholder="Enter Your Name" required>
+              </div>
+              <div style="margin-top: 30px;">
+                  <select style="margin-top: 10px;" class="college" name="college" required>
+                      <option value="" disabled selected>Your College</option>
+                      <option value="GGITS">Gyan Ganga Institute Of Technology And Sciences</option>
+                      <option value="GGCT">Gyan Ganga College Of Technology</option>
+                      <option value="GGCE">Gyan Ganga College of Excellence</option>
+                  </select>
               </div>
 
               <div style="display: flex; height: 50px;">
@@ -231,20 +242,21 @@
                   </div>
               </div>
 
-            <div style="margin-top:70px;">
+              <div style="margin-top:70px;">
                 <label for="email"><p style="font-family:Georgia, 'Times New Roman', Times, serif;">Email</p></label>
                 <input type="text" id="email" name="email" placeholder="Enter Your Email" required>
             </div>
 
-              <div style="margin-top:25px;">
+            <div style="margin-top:25px;">
                 <label for="password"><p style="font-family:Georgia, 'Times New Roman', Times, serif;">Password</p></label>
-                <input type="password" id="myInput" name="password" maxlength="16" placeholder="Max 16 characters" required><br><br>
+                <input type="password" id="password" name="password" maxlength="16" placeholder="Max 16 characters" required><br><br>
+                <label for="confirmPassword"><p style="font-family:Georgia, 'Times New Roman', Times, serif;">Confirm Password</p></label>
+                <input type="password" id="confirmPassword" name="confirmPassword" maxlength="16" placeholder="Max 16 characters" required><br><br>
                 <input type="checkbox" onclick="myFunction()">Show Password
             </div>
 
-           <a href=""><button class="cta-button4">Create Account</button></a>
-
-
+            <button type="submit" class="cta-button4">Create Account</button>
+        </form>
         </div>
 
     </div>
@@ -260,5 +272,38 @@
         x.type = "password";
       }
     }
-    </script>
+
+    // Form submission logic
+    document.getElementById('registrationForm').addEventListener('submit', async function (event) {
+        event.preventDefault(); // Prevent the page from refreshing
+
+        // Collect form data
+        const formData = new FormData(this);
+
+        // Convert FormData to a plain object
+        const data = {};
+        formData.forEach((value, key) => {
+            data[key] = value;
+        });
+
+        try {
+            const response = await fetch('http://localhost:3000/api/register', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data),
+            });
+
+            if (response.ok) {
+                const responseData = await response.json();
+                alert(responseData.message || 'Registration successful!');
+            } else {
+                const errorData = await response.json();
+                alert(errorData.error || 'There was an issue with the registration!');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('An unexpected error occurred. Please try again.');
+        }
+    });
+</script>
 </html>
