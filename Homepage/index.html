@@ -43,20 +43,50 @@
     margin-top: 3px;
   }
   
-  .cta-button {
-    padding: 10px 20px;
-    background-color: black;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-  }
-  
-  .cta-button:hover {
-    background-color: #333;
-  }
+  .dropdown {
+  position: relative;
+  display: inline-block;
+  padding: 6px 15px;
+  background-color: black;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-right: 40px;
+}
 
+.dropbtn {
+  background-color: black;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: black;
+  z-index: 1;
+  min-width: 160px;
+}
+
+
+.dropdown-content a {
+  display: block;
+  color: white;
+  padding: 10px 15px;
+  text-decoration: none;
+}
+
+.dropdown-content a:hover {
+  background-color: #333;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
   .bgimage{
     background-color: #fefefe;
     margin-top: 20px;
@@ -124,6 +154,7 @@
     background-color: #333;
   }
 
+
 </style>
 <body>
     <header class="navbar">
@@ -136,7 +167,15 @@
                 <a href="#">Network & Grow</a>
             </nav>
         </div>
-        <button class="cta-button">Login</button>
+
+        <div class="dropdown">
+          <button class="dropbtn">Login</button>
+          <div class="dropdown-content">
+            <a href="#">Login as Student</a>
+            <a href="#">Login as Alumni</a>
+          </div>
+        </div>
+        
 
       </header>
       <div class="bgimage">
