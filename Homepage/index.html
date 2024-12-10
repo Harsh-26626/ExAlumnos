@@ -70,9 +70,28 @@
     text-align: center;
   }
 
+  .moto{
+    font-size: 21px;
+    overflow: hidden;
+    border-right: 0.15em solid white;
+    white-space: nowrap;
+    animation: typing 6.5s steps(500, end);
+  }
+
+  @keyframes typing {
+    from{
+      width: 0;
+    }
+    to {
+      width: 100%;
+    }
+  }
+
   .mission{
     text-align: center;
-    margin-top: 70px;;
+    margin-top: 70px;
+    font-size: 45px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   }
   
   .cta-button2 {
@@ -91,6 +110,7 @@
   }
 
   .cta-button3 {
+    display: flex;
     padding: 10px 20px;
     background-color: black;
     color: white;
@@ -99,7 +119,6 @@
     cursor: pointer;
     font-size: 16px;
     margin-top: 10%;
-    margin-left: 59%;
   }
 
   .cta-button3:hover {
@@ -123,18 +142,17 @@
       </header>
       <div class="bgimage">
         <h2 class="welcome" style="font-size: 3em;">Welcome To ExAlumnos</h2>
-        <p class="welcome">ExAlumnos is a community built to reconnect,engage and empower the alumini of Universities. </p>
+        <div style="display: inline-block; justify-content: center;"><p class="moto"><b>ExAlumnos is a community built to reconnect,engage and empower the alumini of Universities.</b></p></div>
         <h2 class="mission">Our Mission</h2>
-        <p>Our Mission is to create connections amoung alumini and strengthen their bond with thier under Grad.
+        <p style="font-size: 21px; text-align: center;">Our Mission is to create connections amoung alumini and strengthen their bond with thier under Grad.
           Whether you're looking to network, share memories, give back, or find mentorship opportunities, we provide 
           tool to make it happen.
         </p>
 
-        <a href="Studentsignup.html"><button class="cta-button2">Signup as Student</button></a>
-        <a href="Aluminisignup.html"><button class="cta-button3">Signup as Alumini</button></a>
-
+        <div style="display: flex; justify-content: center; gap: 60%;">
+        <div><a href="Studentsignup.html"><button class="cta-button2">Signup as Student</button></a></div>
+        <div><a href="Aluminisignup.html"><button class="cta-button3">Signup as Alumini</button></a></div>
+        </div>
       </div>
-
-      
 </body>
 </html>
