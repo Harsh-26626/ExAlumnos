@@ -6,7 +6,6 @@
     <title>Login as Alumini</title>
 </head>
 <style>
-
     body {
         margin: 0;
         font-family: Arial, sans-serif;
@@ -160,8 +159,7 @@
 
     .cta-button4:hover {
     background-color: #333;
-    }
-
+    }/* Your styles */
 </style>
 <body>
     <header class="navbar">
@@ -175,111 +173,111 @@
             </nav>
         </div>
         <button class="cta-button">Login</button>
-      </header>
-    
+    </header>
+
     <div class="background">
         <div id="imgcontainer">
-            <p style="font-size: 3em; color:#3C3D37; text-align: center;">ExAlumnos</p>
-            <p style="font-size: 1.3em; font-family: 'Courier New', Courier, monospace; color: #f8f8ff; padding-top: 40px; text-align: end; padding-right: 5%;">Learning doesn’t end with graduation, it evolves with connection.</p>
-            <p style="font-size: 1.3em; font-family: 'Courier New', Courier, monospace; color: #f8f8ff; padding-top: 125px; text-align: center;">Celebrate your journey,<br> inspire the next.</p>
-            <p style="font-size: 1.3em; font-family: 'Courier New', Courier, monospace; padding-left: 5%; color: #f8f8ff; padding-top: 135px;">Your network is your net worth <br> let’s build it together.</p>
+            <!-- Your image content -->
         </div>
         <div style="padding-left: 5%;">
             <nav class="title">Create an Account</nav> 
-            <p style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Let's get started as <b>Alumini</b></p>
-            <div style="margin-top:30px;">
-                <label for="name"><p style="font-family:Georgia, 'Times New Roman', Times, serif;">Name</p></label>
-                <input type="text" id="name" name="name" placeholder="Enter Your Name" required>
-            </div>
-            <div style="margin-top: 30px;">
-                <label for="college"></label>
-                <select style="margin-top: 10px;" class="college" name="college" required>
-                    <option value="" disabled selected>Your College</option>
-                    <option value="GGITS">Gyan Ganga Institute Of Technology And Sciences</option>
-                    <option value="GGCT">Gyan Ganga College Of Technology</option>
-                    <option value="GGCE">Gyan Ganga College of Excellence</option>
-                </select>
-              </div>
-
-              <div style="display: flex; height: 50px;">
-                <div style="margin-top: 30px; flex: 0 0 70%;">
-                    <label for="branch"></label>
-                    <select id="branch" name="branch" required>
-                      <option value="" disabled selected>Branch</option>
-                      <option value="CS">CSE</option>
-                      <option value="AIML">AIML</option>
-                      <option value="CSBS">CSBS</option>
-                      <option value="IOT">IOT</option>
-                      <option value="AIR">AIR</option>
-                      <option value="IT">IT</option>
-                      <option value="EC">EC</option>
-                      <option value="EX">EX</option>
-                      <option value="MECH">MECH</option>
-                      <option value="CIVIL">CIVIL</option>
+            <p style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Let's get started as <b>Alumni</b></p>
+            
+            <!-- Registration Form -->
+            <form id="registrationForm">
+                <div style="margin-top:30px;">
+                    <label for="name"><p style="font-family:Georgia, 'Times New Roman', Times, serif;">Name</p></label>
+                    <input type="text" id="name" name="name" placeholder="Enter Your Name" required>
+                </div>
+                <div style="margin-top: 30px;">
+                    <select style="margin-top: 10px;" class="college" name="college" required>
+                        <option value="" disabled selected>Your College</option>
+                        <option value="GGITS">Gyan Ganga Institute Of Technology And Sciences</option>
+                        <option value="GGCT">Gyan Ganga College Of Technology</option>
+                        <option value="GGCE">Gyan Ganga College of Excellence</option>
                     </select>
-                  </div>
-                  <div style="margin-top: 30px; flex: 0 0 70%;">
-                    <label for="year"></label>
-                    <select id="year" name="year" required>
-                        <option value="" disabled selected>Grad Year</option>
-                        <option value="2028">2028</option>
-                        <option value="2027">2027</option>
-                        <option value="2026">2026</option>
-                        <option value="2025">2025</option>
-                        <option value="2024">2024</option>
-                        <option value="2023">2023</option>
-                        <option value="2022">2022</option>
-                        <option value="2021">2021</option>
-                        <option value="2020">2020</option>
-                        <option value="2019">2019</option>
-                        <option value="2018">2018</option>
-                        <option value="2017">2017</option>
-                        <option value="2016">2016</option>
-                        <option value="2015">2015</option>
-                        <option value="2014">2014</option>
-                        <option value="2013">2013</option>
-                        <option value="2012">2012</option>
-                        <option value="2011">2011</option>
-                        <option value="2010">2010</option>
-                        <option value="2009">2009</option>
-                        <option value="2008">2008</option>
-                        <option value="2007">2007</option>
-                        <option value="2006">2006</option>
-                        <option value="2005">2005</option>
-                        <option value="2004">2004</option>
-                        <option value="2003">2003</option>
-                    </select>
-                  </div>
-              </div>
+                </div>
 
-            <div style="margin-top:70px;">
-                <label for="email"><p style="font-family:Georgia, 'Times New Roman', Times, serif;">Email</p></label>
-                <input type="text" id="email" name="email" placeholder="Enter Your Email" required>
-            </div>
+                <div style="display: flex; height: 50px;">
+                    <div style="margin-top: 30px; flex: 0 0 70%;">
+                        <select id="branch" name="branch" required>
+                            <option value="" disabled selected>Branch</option>
+                            <option value="CS">CSE</option>
+                            <!-- More branches -->
+                        </select>
+                    </div>
+                    <div style="margin-top: 30px; flex: 0 0 70%;">
+                        <select id="year" name="year" required>
+                            <option value="" disabled selected>Grad Year</option>
+                            <option value="2028">2028</option>
+                            <!-- More years -->
+                        </select>
+                    </div>
+                </div>
 
-              <div style="margin-top:25px;">
-                <label for="password"><p style="font-family:Georgia, 'Times New Roman', Times, serif;">Password</p></label>
-                <input type="password" id="myInput" name="password" maxlength="16" placeholder="Max 16 characters" required><br><br>
-                <input type="checkbox" onclick="myFunction()">Show Password
-            </div>
+                <div style="margin-top:70px;">
+                    <label for="email"><p style="font-family:Georgia, 'Times New Roman', Times, serif;">Email</p></label>
+                    <input type="text" id="email" name="email" placeholder="Enter Your Email" required>
+                </div>
 
-           <a href=""><button class="cta-button4">Create Account</button></a>
+                <div style="margin-top:25px;">
+                    <label for="password"><p style="font-family:Georgia, 'Times New Roman', Times, serif;">Password</p></label>
+                    <input type="password" id="password" name="password" maxlength="16" placeholder="Max 16 characters" required><br><br>
+                    <label for="confirmPassword">Confirm Password:</label>
+                    <input type="password" id="confirmPassword" name="confirmPassword" required>
+                    <input type="checkbox" onclick="myFunction()">Show Password
+                </div>
 
+                <button type="submit" class="cta-button4">Create Account</button>
+            </form>
 
         </div>
-
     </div>
-       
 </body>
 
 <script>
     function myFunction() {
-      var x = document.getElementById("myInput");
-      if (x.type === "password") {
-        x.type = "text";
-      } else {
-        x.type = "password";
-      }
+        var x = document.getElementById("password");
+        if (x.type === "password") {
+            x.type = "text";
+        } else {
+            x.type = "password";
+        }
     }
-    </script>
+
+    // Form submission logic
+    document.getElementById('registrationForm').addEventListener('submit', async function (event) {
+        event.preventDefault(); // Prevent the page from refreshing
+
+        // Collect form data
+        const formData = new FormData(this);
+
+        // Convert FormData to a plain object
+        const data = {};
+        formData.forEach((value, key) => {
+            data[key] = value;
+        });
+
+        try {
+            const response = await fetch('http://localhost:3000/api/register', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data),
+            });
+
+            if (response.ok) {
+                const responseData = await response.json();
+                alert(responseData.message || 'Registration successful!');
+                // Redirect to another page after successful submission
+                window.location.href = 'www.google.com';
+            } else {
+                const errorData = await response.json();
+                alert(errorData.error || 'There was an issue with the registration!');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('An unexpected error occurred. Please try again.');
+        }
+    });
+</script>
 </html>
