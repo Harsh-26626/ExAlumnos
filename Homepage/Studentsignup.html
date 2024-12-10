@@ -12,48 +12,6 @@
       background-color: #F8F8FF;
   }
 
-  .navbar {
-  display: flex;
-  align-items:center;
-  justify-content: space-between;
-  padding: 0 40px;
-  height: 60px;
-  border-left: 4px solid #007bff;
-}
-
-.site-name {
-  font-size: 20px;
-  font-weight: normal;
-}
-
-.nav-links {
-  display: flex;
-  gap: 20px;
-}
-
-.nav-links a {
-  text-decoration: none;
-  justify-content: space-between;
-  color: black;
-  font-size: 16px;
-  margin-left: 15px;
-  margin-top: 3px;
-}
-
-.cta-button {
-  padding: 10px 20px;
-  background-color: black;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 16px;
-}
-
-.cta-button:hover {
-  background-color: #333;
-}
-
   .title{
           margin-top: 60px;
           text-decoration: solid;
@@ -174,18 +132,15 @@
 
 </style>
 <body>
-    <header class="navbar">
-        <div class="site-name">
-            <nav class="nav-links">
-                <div class="nav-links" onclick="window.location.href='index.html'">ExAlumnos</div>
-                <a href="directory.html" style="margin-left: 40px;">Alumni Directory</a>
-                <a href="Studentsignup.html">Register Here</a>
-                <a href="#">Chat</a>
-                <a href="#">Network & Grow</a>
-            </nav>
-        </div>
-        <button class="cta-button">Login</button>
-      </header>
+  <header id="header-placeholder"></header>
+
+<script>
+  fetch('header.html')
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById('header-placeholder').innerHTML = data;
+    });
+</script>
     
     <div class="background">
         <div id="imgcontainer">
@@ -196,7 +151,7 @@
         </div>
         <div style="padding-left: 5%;">
             <nav class="title">Create an Account</nav> 
-            <p style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Let's get started as <b>UnderGrad</b></p>
+            <p style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Let's get started as <b>Student</b></p>
             <!-- Registration Form -->
             <form id="registrationForm">
               <div style="margin-top:30px;">
