@@ -25,9 +25,6 @@
   .site-name {
     font-size: 20px;
     font-weight: normal;
-    backdrop-filter: blur(30px);
-    box-shadow: 0px 0px 30px rgba(227, 228, 237, 0.37);
-    border: 2px solid rgba(255, 255, 255, 0.18);
   }
   
   .nav-links {
@@ -112,8 +109,9 @@
     <header class="navbar">
         <div class="site-name">
             <nav class="nav-links">
-                ExAlumnos
+                <div class="nav-links" onclick="window.location.href='index.html'">ExAlumnos</div>
                 <a href="directory.html" style="margin-left: 40px;">Alumni Directory</a>
+                <a href="Studentsignup.html">Register Here</a>
                 <a href="#">Chat</a>
                 <a href="#">Network & Grow</a>
             </nav>
@@ -130,8 +128,8 @@
           tool to make it happen.
         </p>
 
-        <button class="cta-button2">Login as Student</button>
-        <button class="cta-button3">Login as Alumini</button>
+        <a href="Studentsignup.html"><button class="cta-button2">Login as Student</button></a>
+        <a href="Aluminisignup.html"><button class="cta-button3">Login as Alumini</button></a>
 
       </div>
 
