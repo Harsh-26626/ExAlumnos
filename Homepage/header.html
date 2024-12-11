@@ -1,5 +1,10 @@
 <!DOCTYPE html>
-<style>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
     .navbar {
     display: flex;
     align-items:center;
@@ -73,22 +78,25 @@
   display: block;
 }
 </style>
-    <header id="header" class="navbar">
-        <div class="site-name">
-            <nav class="nav-links">
-                <div class="nav-links" style="cursor: pointer" onclick="window.location.href='index.html'">ExAlumnos</div>
-                <a href="directory.html" style="margin-left: 40px;">Alumni Directory</a>
-                <a href="#">Chat</a>
-                <a href="#">Network & Grow</a>
-            </nav>
-        </div>
+</head>
+<body>
+  <header id="header" class="navbar">
+    <div class="site-name">
+        <nav class="nav-links">
+            <div class="nav-links" style="cursor: pointer" onclick="window.location.href='index.html'">ExAlumnos</div>
+            <a href="directory.html" style="margin-left: 40px;">Alumni Directory</a>
+            <a href="#">Chat</a>
+            <a href="#">Network & Grow</a>
+        </nav>
+    </div>
 
-        <div class="dropdown">
-          <button class="dropbtn">Login</button>
-          <div class="dropdown-content">
-            <a href="#">Login as Student</a>
-            <a href="#">Login as Alumni</a>
-          </div>
-        </div>
-    </header>
+    <div class="dropdown">
+      <button class="dropbtn">Login</button>
+      <div class="dropdown-content">
+        <a href="loginstudent.html">Login as Student</a>
+        <a href="loginalumini.html">Login as Alumni</a>
+      </div>
+    </div>
+</header>
+</body>
 </html>
