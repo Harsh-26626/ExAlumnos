@@ -153,7 +153,7 @@
             <nav class="title">Create an Account</nav> 
             <p style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Let's get started as <b>Student</b></p>
             <!-- Registration Form -->
-            <form id="registrationForm">
+            <form id="studentRegistrationForm">
               <div style="margin-top:30px;">
                   <label for="name"><p style="font-family:Georgia, 'Times New Roman', Times, serif;">Name</p></label>
                   <input type="text" id="name" name="name" placeholder="Enter Your Name" required>
@@ -227,38 +227,39 @@
         x.type = "password";
       }
     }
+    document.getElementById('studentRegistrationForm').addEventListener('submit', async (event) => {
+    event.preventDefault(); // Prevent default form submission
 
-    // Form submission logic
-    document.getElementById('registrationForm').addEventListener('submit', async function (event) {
-        event.preventDefault(); // Prevent the page from refreshing
+    const formData = new FormData(event.target);
 
-        // Collect form data
-        const formData = new FormData(this);
+    const studentData = {
+      name: formData.get('name'),
+      college: formData.get('college'),
+      branch: formData.get('branch'),
+      year: formData.get('year'),
+      email: formData.get('email'),
+      password: formData.get('password'),
+      confirmPassword: formData.get('confirmPassword'),
+    };
 
-        // Convert FormData to a plain object
-        const data = {};
-        formData.forEach((value, key) => {
-            data[key] = value;
-        });
+    try {
+      const response = await fetch('http://localhost:3000/api/register-student', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(studentData),
+      });
 
-        try {
-            const response = await fetch('http://localhost:3000/api/register', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(data),
-            });
-
-            if (response.ok) {
-                const responseData = await response.json();
-                alert(responseData.message || 'Registration successful!');
-            } else {
-                const errorData = await response.json();
-                alert(errorData.error || 'There was an issue with the registration!');
-            }
-        } catch (error) {
-            console.error('Error:', error);
-            alert('An unexpected error occurred. Please try again.');
-        }
-    });
+      const result = await response.json();
+      if (response.ok) {
+        alert(result.message); // Show success message
+        event.target.reset(); // Reset form
+      } else {
+        alert(result.error); // Show error message
+      }
+    } catch (error) {
+      console.error('Error during registration:', error);
+      alert('An error occurred. Please try again.');
+    }
+  });
 </script>
 </html>
