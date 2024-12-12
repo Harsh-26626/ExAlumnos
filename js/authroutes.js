@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const User = require('./user');
+const Student = require('./student'); // Student model
 const crypto = require('crypto');
 
 // Registration route
@@ -16,7 +17,6 @@ router.post('/register', async (req, res) => {
     if (existingUser) {
       return res.status(400).json({ error: 'Email is already registered!' });
     }
-
     // Register user as pending by default (no approval token needed)
     const newUser = new User({
       name,
@@ -33,6 +33,42 @@ router.post('/register', async (req, res) => {
   } catch (error) {
     console.error('Error saving user:', error);
     res.status(500).json({ error: 'An error occurred during registration.' });
+  }
+});
+
+// Student Registration Route
+router.post('/register-student', async (req, res) => {
+  const { name, college, branch, year, email, password, confirmPassword } = req.body;
+
+  if (!email.endsWith('@ggits.net')) {
+    return res.status(400).json({ error: 'Invalid email id' });
+  }
+
+  if (password !== confirmPassword) {
+    return res.status(400).json({ error: 'Passwords do not match!' });
+  }
+
+  try {
+    // Check if the email is already registered for a student
+    const existingStudent = await Student.findOne({ email });
+    if (existingStudent) {
+      return res.status(400).json({ error: 'Email is already registered as a student!' });
+    }
+
+    const newStudent = new Student({
+      name,
+      college,
+      branch,
+      year,
+      email,
+      password,
+    });
+
+    await newStudent.save();
+    res.json({ message: 'Student registration successful!' });
+  } catch (error) {
+    console.error('Error saving student:', error);
+    res.status(500).json({ error: 'An error occurred during student registration.' });
   }
 });
 
