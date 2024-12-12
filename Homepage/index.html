@@ -14,79 +14,7 @@
     background-image: url('homebg.jpg');
     background-size: cover; 
   }
-  
-  .navbar {
-    display: flex;
-    align-items:center;
-    justify-content: space-between;
-    padding: 0 40px;
-    height: 60px;
-    border-left: 4px solid #007bff; /* Blue vertical line */
-  }
-  
-  .site-name {
-    font-size: 20px;
-    font-weight: normal;
-  }
-  
-  .nav-links {
-    display: flex;
-    gap: 20px;
-  }
-  
-  .nav-links a {
-    text-decoration: none;
-    justify-content: space-between;
-    color: black;
-    font-size: 16px;
-    margin-left: 15px;
-    margin-top: 3px;
-  }
-  
-  .dropdown {
-  position: relative;
-  display: inline-block;
-  padding: 6px 15px;
-  background-color: black;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 16px;
-  margin-right: 40px;
-}
 
-.dropbtn {
-  background-color: black;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  cursor: pointer;
-}
-
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: black;
-  z-index: 1;
-  min-width: 160px;
-}
-
-
-.dropdown-content a {
-  display: block;
-  color: white;
-  padding: 10px 15px;
-  text-decoration: none;
-}
-
-.dropdown-content a:hover {
-  background-color: #333;
-}
-
-.dropdown:hover .dropdown-content {
-  display: block;
-}
   .bgimage{
     background-color: #fefefe;
     margin-top: 20px;
@@ -105,7 +33,9 @@
     overflow: hidden;
     border-right: 0.15em solid white;
     white-space: nowrap;
-    animation: typing 6.5s steps(500, end);
+    animation: typing 6.5s ease-in-out;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
   }
 
   @keyframes typing {
@@ -115,7 +45,9 @@
     to {
       width: 100%;
     }
+
   }
+
 
   .mission{
     text-align: center;
@@ -157,28 +89,19 @@
 
 </style>
 <body>
-    <header class="navbar">
-        <div class="site-name">
-            <nav class="nav-links">
-                <div class="nav-links" style="cursor: pointer" onclick="window.location.href='index.html'">ExAlumnos</div>
-                <a href="directory.html" style="margin-left: 40px;">Alumni Directory</a>
-                <a href="#">Chat</a>
-                <a href="#">Network & Grow</a>
-            </nav>
-        </div>
+  <header id="header-placeholder"></header>
 
-        <div class="dropdown">
-          <button class="dropbtn">Login</button>
-          <div class="dropdown-content">
-            <a href="#">Login as Student</a>
-            <a href="#">Login as Alumni</a>
-          </div>
-        </div>
-      </header>
+  <script>
+    fetch('header.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('header-placeholder').innerHTML = data;
+      });
+  </script>
       
       <div class="bgimage">
         <h2 class="welcome" style="font-size: 3em;">Welcome To ExAlumnos</h2>
-        <div style="display: inline-block; justify-content: center;"><p class="moto"><b>ExAlumnos is a community built to reconnect,engage and empower the alumini of Universities.</b></p></div>
+        <div style="display: inline-block; justify-content: center; font-weight: bold;"><p class="moto"></p></div>
         <h2 class="mission">Our Mission</h2>
         <p style="font-size: 21px; text-align: center;">Our Mission is to create connections amoung alumini and strengthen their bond with thier under Grad.
           Whether you're looking to network, share memories, give back, or find mentorship opportunities, we provide 
@@ -191,4 +114,19 @@
         </div>
       </div>
 </body>
+
+<script>
+  const texts = ["ExAlumnos is a community built to reconnect, engage and empower the alumini of Universities.","Resister now! Reconnect with Your Aliumini.","Ask Questions, Chat and Network or just explore the directory!"];
+  let index = 0;
+  const textElement = document.querySelector('.moto');
+
+  function updateText() {
+    textElement.textContent = texts[index];
+    index = (index + 1) % texts.length;
+  }
+
+  setInterval(updateText, 13000);
+  updateText();
+</script>
+
 </html>
