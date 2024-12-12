@@ -4,28 +4,9 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const connectDB = require('./db'); // Import the DB connection function
 const authRoutes = require('./authroutes'); // Import routes for authentication
-const multer = require("multer");
-const path = require('path');
-
-const fs = require('fs');
-if (!fs.existsSync('./uploads')) {
-  fs.mkdirSync('./uploads');
-}
 
 const app = express();
 
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, "uploads/");
-  },
-  filename: (req, file, cb) => {
-    cb(null, Date.now() + path.extname(file.originalname)); // Append file extension
-  },
-});
-
-const upload = multer({ storage: storage });
-
-app.use(express.urlencoded({ extended: false }));
 // Enable CORS
 app.use(cors());
 
@@ -67,11 +48,3 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
-
-app.post("/upload", upload.single("profileImage"), (req, res) => {
-  console.log(req.body);
-  console.log(req.file);
-
-  return res.redirect("/");
-});
-
