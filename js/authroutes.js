@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 const User = require('./user');
 const Student = require('./student'); // Student model
-const crypto = require('crypto');
 
 // Registration route
 router.post('/register', async (req, res) => {
@@ -17,18 +16,19 @@ router.post('/register', async (req, res) => {
     if (existingUser) {
       return res.status(400).json({ error: 'Email is already registered!' });
     }
-    // Register user as pending by default (no approval token needed)
+
+    // Save password as plain text (Not recommended)
     const newUser = new User({
       name,
       college,
       branch,
       year,
       email,
-      password,
-      status: 'pending', // User starts with a pending status
+      password, // Store the plain-text password directly
+      status: 'pending',  // User starts with a pending status
     });
-    await newUser.save();
 
+    await newUser.save();
     res.json({ message: 'Registration successful! Please wait for admin approval.' });
   } catch (error) {
     console.error('Error saving user:', error);
@@ -61,7 +61,7 @@ router.post('/register-student', async (req, res) => {
       branch,
       year,
       email,
-      password,
+      password, // Store the plain-text password directly
     });
 
     await newStudent.save();
@@ -139,4 +139,59 @@ router.put('/reject/:userId', async (req, res) => {
   }
 });
 
-module.exports = router;
+// Login route
+router.post('/login', async (req, res) => {
+    const { email, password } = req.body; // Get email and password from the request
+
+    try {
+        // Find the user by email
+        const user = await User.findOne({ email });
+
+        if (!user) {
+            return res.status(404).json({ error: 'User not found' });
+        }
+
+        // Verify the password by comparing plain text (No hashing required)
+        if (password !== user.password) {
+            return res.status(401).json({ error: 'Invalid password' });
+        }
+
+        // Check if status is 'approved'
+        if (user.status !== 'approved') {
+            return res.status(403).json({ error: 'Your account is not approved yet.' });
+        }
+
+        // Successful login
+        return res.status(200).json({ message: 'Login successful', user: { name: user.name } });
+    } catch (err) {
+        console.error('Error during login:', err);
+        res.status(500).json({ error: 'An unknown error occurred.' });
+    }
+});
+// In authroutes.js or a separate studentRoutes.js file
+router.post('/student-login', async (req, res) => {
+  const { email, password } = req.body;  // Get email and password from the request
+
+  try {
+      // Find the student by email
+      const student = await Student.findOne({ email });
+
+      if (!student) {
+          return res.status(404).json({ error: 'Student not found' });
+      }
+
+      // Verify the password (no hashing involved)
+      if (password !== student.password) {
+          return res.status(401).json({ error: 'Invalid password' });
+      }
+
+      // Successful login
+      return res.status(200).json({ message: 'Login successful' });
+  } catch (err) {
+      console.error('Error during login:', err);
+      res.status(500).json({ error: 'An unknown error occurred.' });
+  }
+});
+
+
+module.exports=router;
