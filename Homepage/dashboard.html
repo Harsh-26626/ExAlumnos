@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Media UI</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+        }
+
+        /* Layout */
+        .container {
+            display: flex;
+            height: 100vh;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 20%;
+            background-color: #fff;
+            border-right: 1px solid #ddd;
+            padding: 20px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+        }
+        .sidebar a {
+            display: block;
+            margin: 15px 0;
+            color: #333;
+            text-decoration: none;
+            font-weight: bold;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .sidebar a:hover {
+            color: #007bff;
+        }
+
+        .sidebar a:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 15px;
+            height: 15px;
+            background-color: #007bff;
+            border-radius: 50%;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .sidebar a:hover:before {
+            opacity: 1;
+        }
+
+        /* Main content */
+        .main {
+            flex: 1;
+            padding: 20px;
+        }
+
+        .stories {
+            display: flex;
+            gap: 15px;
+            overflow-x: auto;
+            padding: 10px 0;
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 20px;
+        }
+
+        .story {
+            text-align: center;
+        }
+
+        .story img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: 2px solid #007bff;
+        }
+
+        .create-post {
+            background: #fff;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .create-post textarea {
+            width: 100%;
+            border: none;
+            resize: none;
+            outline: none;
+        }
+
+        .create-post button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            background: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .post {
+            background: #fff;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .post-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .post-header img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        .post-actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+
+        .post-actions span {
+            cursor: pointer;
+            color: #007bff;
+        }
+
+        /* Sidebar Right */
+        .sidebar-right {
+            width: 20%;
+            background-color: #fff;
+            border-left: 1px solid #ddd;
+            padding: 20px;
+            box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .contacts, .suggested-pages {
+            margin-bottom: 20px;
+        }
+
+        .contacts h3, .suggested-pages h3 {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .contacts li, .suggested-pages li {
+            list-style: none;
+            margin: 5px 0;
+        }
+
+        .contacts a, .suggested-pages a {
+            text-decoration: none;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Left Sidebar -->
+        <div class="sidebar">
+            <a href="#">Home</a>
+            <a href="#">Messages</a>
+            <a href="#">Profile</a>
+            <a href="#">Saved Post</a>
+            <a href="#">Marketplace</a>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main">
+            <!-- Stories Section -->
+            <div class="stories">
+                <div class="story">
+                    <img src="https://via.placeholder.com/60" alt="Story">
+                    <p>Add Story</p>
+                </div>
+                <div class="story">
+                    <img src="https://via.placeholder.com/60" alt="Story">
+                    <p>Esther</p>
+                </div>
+                <div class="story">
+                    <img src="https://via.placeholder.com/60" alt="Story">
+                    <p>Arlene</p>
+                </div>
+            </div>
+
+            <!-- Create Post -->
+            <div class="create-post">
+                <textarea placeholder="What's on your mind?"></textarea>
+                <button>Create a post</button>
+            </div>
+
+            <!-- Posts -->
+            <div class="post">
+                <div class="post-header">
+                    <img src="https://via.placeholder.com/40" alt="User">
+                    <div>
+                        <strong>Smith Jems</strong>
+                        <p>12h ago</p>
+                    </div>
+                </div>
+                <p>In the fast-paced world of corporate life, it's crucial to prioritize your mental peace...</p>
+                <div class="post-actions">
+                    <span>2.8K Likes</span>
+                    <span>7 Comments</span>
+                    <span>Share</span>
+                </div>
+            </div>
+
+            <div class="post">
+                <div class="post-header">
+                    <img src="https://via.placeholder.com/40" alt="User">
+                    <div>
+                        <strong>Robert Fox</strong>
+                        <p>1d ago</p>
+                    </div>
+                </div>
+                <p>Creativity is intelligence having fun! #design</p>
+                <div class="post-actions">
+                    <span>1.2K Likes</span>
+                    <span>4 Comments</span>
+                    <span>Share</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Sidebar -->
+        <div class="sidebar-right">
+            <div class="contacts">
+                <h3>Contacts</h3>
+                <ul>
+                    <li><a href="#">Bessie Cooper</a></li>
+                    <li><a href="#">Savannah Nguyen</a></li>
+                    <li><a href="#">Ralph Edwards</a></li>
+                </ul>
+            </div>
+
+            <div class="suggested-pages">
+                <h3>Suggested Pages</h3>
+                <ul>
+                    <li><a href="#">Graphic Design</a></li>
+                    <li><a href="#">Technology News</a></li>
+                    <li><a href="#">Freelancing Tips</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
