@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const User = require('./user');
 const Student = require('./student'); // Student model
+const Post = require('./post');
 
 // Registration route
 router.post('/register', async (req, res) => {
@@ -162,7 +163,7 @@ router.post('/login', async (req, res) => {
         }
 
         // Successful login
-        return res.status(200).json({ message: 'Login successful', user: { name: user.name } });
+        return res.status(200).json({ message: 'Login successful', user: { name: user.name, email: user.email, branch: user.branch, year: user.year}});
     } catch (err) {
         console.error('Error during login:', err);
         res.status(500).json({ error: 'An unknown error occurred.' });
@@ -186,12 +187,30 @@ router.post('/student-login', async (req, res) => {
       }
 
       // Successful login
-      return res.status(200).json({ message: 'Login successful' });
+      return res.status(200).json({ message: 'Login successful', student: { name: student.name, email: student.email, branch: student.branch, year: student.year}});
   } catch (err) {
       console.error('Error during login:', err);
       res.status(500).json({ error: 'An unknown error occurred.' });
   }
 });
 
+router.post('/post', async (req, res) => {
+  const { name, branch, post, year} = req.body;
+
+  try {
+    const newPost = new Post({
+      name,
+      post,
+      branch,
+      year,
+    });
+
+    await newPost.save();
+    res.json({ message: 'Post Created!' });
+  } catch (error) {
+    console.error('Cannot Create Post:', error);
+    res.status(500).json({ error: 'An error occurred while creating post.' });
+  }
+});
 
 module.exports=router;

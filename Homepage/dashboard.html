@@ -195,8 +195,8 @@
         <div class="sidebar">
             <!-- add name and email here -->
             <div>
-                <p style="text-align: center;">Username</p>
-                <p style="text-align: center;">Email</p>
+                <p style="text-align: center;">Welcome <span id = "username"></span>!</p>
+                <p style="text-align: center;"><span id = "email"></span></p>
             </div>
             <a href="#"><img src="dashboard_icons/homeicon.png" style="height: 20px; width: 20px;"> Home</a>
             <a href="#"><img src="dashboard_icons/messegeicon.png" style="height: 20px; width: 20px;"> Messages</a>
@@ -224,9 +224,11 @@
             </div>
 
             <!-- Create Post -->
+            <form id="postForm">
             <div class="create-post">
                 <textarea placeholder="What's on your mind?"></textarea>
-                <button>Create a post</button>
+                <input type="text" id="post" name="post" placeholder="What's on your mind?" required>
+                <button type="submit">Create a post</button>
             </div>
 
             <!-- Posts -->
@@ -285,4 +287,56 @@
         </div>
     </div>
 </body>
+
+<script>
+    // Retrieve the username from localStorage
+    const username = localStorage.getItem('username');
+    if (username) {
+        document.getElementById('username').textContent = username;
+    } else {
+        // Handle the case where the username is not available
+        document.getElementById('username').textContent = 'Guest';
+    }
+    const email = localStorage.getItem('email');
+    if (email) {
+        document.getElementById('email').textContent = email;
+    } else {
+        document.getElementById('email').textContent = 'guest@Exalumnous.com';
+    }
+
+    const branch = localStorage.getItem('branch');
+    const year = localStorage.getItem('year');
+
+    document.getElementById('postForm').addEventListener('submit', async (event) => {
+    event.preventDefault(); // Prevent default form submission
+
+    const formData = new FormData(event.target);
+
+    const postData = {
+      name: username,
+      post: formData.get('post'),
+      branch: branch,
+      year: year,
+    };
+
+    try {
+      const response = await fetch('http://localhost:3000/api/post', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(postData),
+      });
+
+      const result = await response.json();
+      if (response.ok) {
+        alert(result.message); // Show success message
+        event.target.reset(); // Reset form
+      } else {
+        alert(result.error); // Show error message
+      }
+    } catch (error) {
+      console.error('Error creating Post:', error);
+      alert('An error occurred. Please try again.');
+    }
+  });
+</script>
 </html>
