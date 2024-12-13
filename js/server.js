@@ -30,11 +30,29 @@ const userSchema = new mongoose.Schema({
 // Create a Model for the 'users' Collection
 const User = mongoose.models.User || mongoose.model('User', userSchema);
 
+const postSchema = new mongoose.Schema({
+  name: String,
+  branch: String,
+  post: String,
+  year: String,
+});
+
+const Post = mongoose.models.Post || mongoose.model('Post', postSchema);
+
 // API Endpoint to Fetch Alumni Data
 app.get('/api/alumni', async (req, res) => {
   try {
       const alumni = await User.find({ status: 'approved' }); // Fetch only alumni with status 'pending'
       res.json(alumni); // Send data as JSON
+  } catch (err) {
+      res.status(500).json({ error: 'Failed to fetch alumni data' });
+  }
+});
+
+app.get('/api/post', async (req, res) => {
+  try {
+      const post = await Post.find();
+      res.json(post); // Send data as JSON
   } catch (err) {
       res.status(500).json({ error: 'Failed to fetch alumni data' });
   }

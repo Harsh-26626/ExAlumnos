@@ -230,6 +230,7 @@
                 <input type="text" id="post" name="post" placeholder="What's on your mind?" required>
                 <button type="submit">Create a post</button>
             </div>
+            </form>
 
             <!-- Posts -->
             <div class="post">
@@ -289,6 +290,36 @@
 </body>
 
 <script>
+
+        async function fetchPost() {
+            try {
+                const response = await fetch('http://localhost:3000/api/post');
+                const postData = await response.json();
+
+                const postContainer = document.querySelector('.main');
+                postData.forEach(post => {
+                    const postCard = document.createElement('div');
+                    postCard.classList.add('post');
+                    postCard.innerHTML = `
+                    <div class="post-header">
+                        <img src="${post.image}" alt="${post.name}">
+                        <div>
+                            <strong>${post.name}</strong>
+                            <h2>${post.branch}</h2>
+                            <p>Batch of ${post.year}</p>
+                        </div>
+                    </div>
+                    <p>${post.post}</p>
+                    `;
+                    postContainer.appendChild(postCard);
+                });
+            } catch (error) {
+                console.error('Error fetching post data:', error);
+            }
+        }
+
+        fetchPost();
+
     // Retrieve the username from localStorage
     const username = localStorage.getItem('username');
     if (username) {
@@ -330,6 +361,7 @@
       if (response.ok) {
         alert(result.message); // Show success message
         event.target.reset(); // Reset form
+        location.reload();
       } else {
         alert(result.error); // Show error message
       }
