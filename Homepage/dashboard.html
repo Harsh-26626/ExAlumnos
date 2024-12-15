@@ -102,15 +102,28 @@
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
 
-        .create-post textarea {
-            width: 100%;
+        #title {
+            background: transparent;
+            outline-style: none;
             border: none;
-            resize: none;
-            outline: none;
+            box-shadow: 0 0 0;
+            width: 100%;
+            font-size: 26px;
+        }
+
+        #post {
+            padding-top: 18px;
+            background: transparent;
+            outline-style: none;
+            border: none;
+            box-shadow: 0 0 0;
+            width: 100%;
+            font-size: 15px;
         }
 
         .create-post button {
-            margin-top: 10px;
+            display: flex;
+            justify-content: end;
             padding: 10px 20px;
             background: #007bff;
             color: #fff;
@@ -205,28 +218,13 @@
 
         <!-- Main Content -->
         <div class="main">
-            <!-- Stories Section -->
-            <div class="stories">
-                <div class="story">
-                    <img src="https://via.placeholder.com/60" alt="Story">
-                    <p>Add Story</p>
-                </div>
-                <div class="story">
-                    <img src="https://via.placeholder.com/60" alt="Story">
-                    <p>Esther</p>
-                </div>
-                <div class="story">
-                    <img src="https://via.placeholder.com/60" alt="Story">
-                    <p>Arlene</p>
-                </div>
-            </div>
-
             <!-- Create Post -->
             <form id="postForm">
             <div class="create-post">
-                <textarea placeholder="What's on your mind?"></textarea>
+                <input type="title" id="title" name="title" placeholder="Title" required>
                 <input type="text" id="post" name="post" placeholder="What's on your mind?" required>
-                <button type="submit">Create a post</button>
+                <p></p>
+                <div style="display: flex; justify-content: end;"><button type="submit">Create a post</button></div>
             </div>
             </form>
 
@@ -236,6 +234,7 @@
                     <img src="https://via.placeholder.com/40" alt="User">
                     <div>
                         <strong>Smith Jems</strong>
+                        <p>CS</p>
                         <p>12h ago</p>
                     </div>
                 </div>
@@ -243,22 +242,6 @@
                 <div class="post-actions">
                     <span>2.8K Likes</span>
                     <span>7 Comments</span>
-                    <span>Share</span>
-                </div>
-            </div>
-
-            <div class="post">
-                <div class="post-header">
-                    <img src="https://via.placeholder.com/40" alt="User">
-                    <div>
-                        <strong>Robert Fox</strong>
-                        <p>1d ago</p>
-                    </div>
-                </div>
-                <p>Creativity is intelligence having fun! #design</p>
-                <div class="post-actions">
-                    <span>1.2K Likes</span>
-                    <span>4 Comments</span>
                     <span>Share</span>
                 </div>
             </div>
@@ -302,11 +285,12 @@
                     <div class="post-header">
                         <img src="${post.image}" alt="${post.name}">
                         <div>
-                            <strong>${post.name}</strong>
-                            <h2>${post.branch}</h2>
-                            <p>Batch of ${post.year}</p>
+                            
+                            <strong style ="font-size: 17px;">${post.name}</strong>
+                            <div style ="display:flex; justify-content: centre; padding-top: 6px; font-size: 15px;">${post.branch} - Batch of ${post.year}</div>
                         </div>
                     </div>
+                    <div>${post.title}</div>
                     <p>${post.post}</p>
                     `;
                     postContainer.appendChild(postCard);
@@ -343,6 +327,7 @@
 
     const postData = {
       name: username,
+      title: formData.get('title'),
       post: formData.get('post'),
       branch: branch,
       year: year,

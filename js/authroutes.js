@@ -194,12 +194,14 @@ router.post('/student-login', async (req, res) => {
   }
 });
 
+// Create Post
 router.post('/post', async (req, res) => {
-  const { name, branch, post, year} = req.body;
+  const {name, branch,title, post, year} = req.body;
 
   try {
     const newPost = new Post({
       name,
+      title,
       post,
       branch,
       year,
