@@ -18,6 +18,28 @@
             overflow: hidden;
         }
 
+        .pfpcard {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border-radius: 10px;
+            padding: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            background-color: #F8FBF8;
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .pfpcard img{
+            width: 100px;
+            height: 100px;
+            border-radius: 60%;
+            object-fit: cover;
+            border-radius: 2px solid #ccc;
+            padding-top: 25px;
+            padding-bottom: 20px;
+        }
+
         /* Sidebar */
         .sidebar {
             width: 15%;
@@ -37,7 +59,7 @@
             border-radius: 10px;
             padding-top: 13px;
             padding-bottom: 13px;
-            top: 25%;
+            top: 11%;
             font-size: 16px;
         }
 
@@ -207,9 +229,10 @@
         <!-- Left Sidebar -->
         <div class="sidebar">
             <!-- add name and email here -->
-            <div>
-                <p style="text-align: center;">Welcome <span id = "username"></span>!</p>
-                <p style="text-align: center;"><span id = "email"></span></p>
+            <div class="pfpcard">
+                <img src="dashboard_icons/Usericon.png" alt="Usericon">
+                <b><div style="padding-bottom: 10px; font-family:Georgia, 'Times New Roman', Times, serif;">Welcome <span id = "username"></span>!</div></b>
+                <b><div style="padding-bottom: 10px; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;"><span id = "email"></span></div></b>
             </div>
             <a href="#"><img src="dashboard_icons/homeicon.png" style="height: 20px; width: 20px;"> Home</a>
             <a href="#"><img src="dashboard_icons/messegeicon.png" style="height: 20px; width: 20px;"> Messages</a>
