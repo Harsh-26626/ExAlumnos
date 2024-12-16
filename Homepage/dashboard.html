@@ -263,7 +263,7 @@
             <div><button class="menu-btn" onclick="toggleSidebar()">☰</button></div>
             <!-- add name and email here -->
             <div class="pfpcard">
-                <img src="dashboard_icons/Usericon.png" alt="Usericon">
+                <img id="photo" src="dashboard_icons/Usericon.png" alt="Usericon">
                 <b><div style="padding-bottom: 10px; font-family:Georgia, 'Times New Roman', Times, serif;">Welcome <span id = "username"></span>!</div></b>
                 <b><div style="padding-bottom: 10px; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;"><span id = "email"></span></div></b>
             </div>
@@ -357,6 +357,9 @@
     } else {
         document.getElementById('email').textContent = 'guest@Exalumnous.com';
     }
+
+    const photo = localStorage.getItem('photo');
+    document.getElementById('photo').src = photo;
 
     const branch = localStorage.getItem('branch');
     const year = localStorage.getItem('year');
