@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const connectDB = require('./db'); // Import the DB connection function
-const authRoutes = require('./authroutes'); // Import routes for authentication
+const authRoutes = require('./authroutes'); // Import routes for authentication and other actions
 
 const app = express();
 
@@ -16,50 +16,11 @@ connectDB();
 // Middleware to parse incoming JSON requests
 app.use(bodyParser.json());
 
-// Define the Alumni Schema
-const userSchema = new mongoose.Schema({
-    name: String,
-    college: String,
-    branch: String,
-    year: String,
-    email: String,
-    password: String,
-    status: String
-});
-
-// Create a Model for the 'users' Collection
-const User = mongoose.models.User || mongoose.model('User', userSchema);
-
-const postSchema = new mongoose.Schema({
-  name: String,
-  branch: String,
-  post: String,
-  year: String,
-});
-
-const Post = mongoose.models.Post || mongoose.model('Post', postSchema);
-
-// API Endpoint to Fetch Alumni Data
-app.get('/api/alumni', async (req, res) => {
-  try {
-      const alumni = await User.find({ status: 'approved' }); // Fetch only alumni with status 'pending'
-      res.json(alumni); // Send data as JSON
-  } catch (err) {
-      res.status(500).json({ error: 'Failed to fetch alumni data' });
-  }
-});
-
-app.get('/api/post', async (req, res) => {
-  try {
-      const post = await Post.find();
-      res.json(post); // Send data as JSON
-  } catch (err) {
-      res.status(500).json({ error: 'Failed to fetch alumni data' });
-  }
-});
+// Serve static files for images (optional if using local file server)
+app.use('/uploads', express.static('uploads'));
 
 // Use routes for authentication and user actions like register, approve, etc.
-app.use('/api', authRoutes); // Use the routes defined in authroutes.js for handling /register, /approve, etc.
+app.use('/api', authRoutes); // Routes are defined in authroutes.js
 
 // Start the Server
 const PORT = process.env.PORT || 3000;

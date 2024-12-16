@@ -31,6 +31,12 @@ const userSchema = new mongoose.Schema({
     enum: ['pending', 'approved'],
     default: 'pending',
   },
+  profilePic: {
+    type: String, // URL of the profile picture
+  },
+  bannerPic: {
+    type: String, // URL of the banner picture
+  }
 });
 
 const User = mongoose.model('User', userSchema);

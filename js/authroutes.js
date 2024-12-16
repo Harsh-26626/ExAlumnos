@@ -1,11 +1,38 @@
 const express = require('express');
 const router = express.Router();
 const User = require('./user');
-const Student = require('./student'); // Student model
+const Student = require('./student');
 const Post = require('./post');
+const AWS = require('aws-sdk');
+const multer = require('multer');
+const multerS3 = require('multer-s3');
+const path = require('path');
 
-// Registration route
-router.post('/register', async (req, res) => {
+// Initialize AWS S3 with your credentials
+AWS.config.update({
+  accessKeyId: 'AKIAS3VBSOLOZKLXOVEC', // Your access key ID
+  secretAccessKey: 'P78hbQvRSfWNkqjJUp7tjPwkmh1eN77spj7Pi2/8', // Your secret access key
+  region: 'us-east-1', // Your region
+});
+
+// Create S3 instance
+const s3 = new AWS.S3();
+
+// Set up multer storage for AWS S3 with the specified bucket
+const upload = multer({
+  storage: multerS3({
+    s3: s3,
+    bucket: 'extralumnos', // Specify your bucket name here
+    acl: 'public-read', // Set the file access permissions to public
+    contentType: multerS3.AUTO_CONTENT_TYPE,
+    key: function (req, file, cb) {
+      cb(null, `images/${Date.now()}_${file.originalname}`); // Generate unique file names
+    },
+  }),
+});
+
+// Registration Route with Image Upload
+router.post('/register', upload.fields([{ name: 'profilePic' }, { name: 'bannerPic' }]), async (req, res) => {
   const { name, college, branch, year, email, password, confirmPassword } = req.body;
 
   if (password !== confirmPassword) {
@@ -18,15 +45,20 @@ router.post('/register', async (req, res) => {
       return res.status(400).json({ error: 'Email is already registered!' });
     }
 
-    // Save password as plain text (Not recommended)
+    // Get image URLs from the uploaded files
+    const profilePicUrl = req.files['profilePic'] ? req.files['profilePic'][0].location : null;
+    const bannerPicUrl = req.files['bannerPic'] ? req.files['bannerPic'][0].location : null;
+
     const newUser = new User({
       name,
       college,
       branch,
       year,
       email,
-      password, // Store the plain-text password directly
+      password,
       status: 'pending',  // User starts with a pending status
+      profilePic: profilePicUrl,  // Store the URL of the profile pic
+      bannerPic: bannerPicUrl,  // Store the URL of the banner pic
     });
 
     await newUser.save();
@@ -36,7 +68,6 @@ router.post('/register', async (req, res) => {
     res.status(500).json({ error: 'An error occurred during registration.' });
   }
 });
-
 // Student Registration Route
 router.post('/register-student', async (req, res) => {
   const { name, college, branch, year, email, password, confirmPassword } = req.body;

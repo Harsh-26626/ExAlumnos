@@ -227,6 +227,16 @@
                     <input type="checkbox" onclick="myFunction()">Show Password
                 </div>
 
+                <div style="margin-top: 30px;">
+                    <label for="profilePhoto"><p style="font-family:Georgia, 'Times New Roman', Times, serif;">Profile Photo</p></label>
+                    <input type="file" id="profilePhoto" name="profilePic" accept="image/*" required>
+                </div>
+                
+                <div style="margin-top: 30px;">
+                    <label for="bannerImage"><p style="font-family:Georgia, 'Times New Roman', Times, serif;">Banner Image</p></label>
+                    <input type="file" id="bannerImage" name="bannerPic" accept="image/*" required>
+                </div>
+
                 <button type="submit" class="cta-button4">Create Account</button>
             </form>
 
@@ -246,35 +256,28 @@
 
     // Form submission logic
     document.getElementById('registrationForm').addEventListener('submit', async function (event) {
-        event.preventDefault(); // Prevent the page from refreshing
+    event.preventDefault(); // Prevent the page from refreshing
 
-        // Collect form data
-        const formData = new FormData(this);
+    const formData = new FormData(this); // Includes file inputs automatically
 
-        // Convert FormData to a plain object
-        const data = {};
-        formData.forEach((value, key) => {
-            data[key] = value;
+    try {
+        const response = await fetch('http://localhost:3000/api/register', {
+            method: 'POST',
+            body: formData, // Send as FormData for file handling
         });
 
-        try {
-            const response = await fetch('http://localhost:3000/api/register', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(data),
-            });
-
-            if (response.ok) {
-                const responseData = await response.json();
-                alert(responseData.message || 'Registration successful!');
-            } else {
-                const errorData = await response.json();
-                alert(errorData.error || 'There was an issue with the registration!');
-            }
-        } catch (error) {
-            console.error('Error:', error);
-            alert('An unexpected error occurred. Please try again.');
+        if (response.ok) {
+            const responseData = await response.json();
+            alert(responseData.message || 'Registration successful!');
+        } else {
+            const errorData = await response.json();
+            alert(errorData.error || 'There was an issue with the registration!');
         }
-    });
+    } catch (error) {
+        console.error('Error:', error);
+        alert('An unexpected error occurred. Please try again.');
+    }
+});
+
 </script>
 </html>
