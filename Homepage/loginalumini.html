@@ -185,6 +185,7 @@
     const result = await response.json(); // Parse the JSON response if the status is ok
     console.log('User Name:', result.user.name);
     console.log('User Email:', result.user.email);
+    console.log('User College:', result.user.college);
     console.log('User Branch: ', result.user.branch);
     console.log('User Year: ', result.user.year);
     console.log('User Photo: ', result.user.profilePic);
@@ -192,6 +193,7 @@
 
     localStorage.setItem('username', result.user.name);
     localStorage.setItem('email', result.user.email);
+    localStorage.setItem('college', result.user.college);
     localStorage.setItem('branch', result.user.branch);
     localStorage.setItem('year', result.user.year);
     localStorage.setItem('photo', result.user.profilePic);
