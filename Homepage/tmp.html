@@ -3,98 +3,198 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Directory</title>
-</head>
-<style>
-    body{
-        margin: 0;
-        font-family: Arial, sans-serif;
-        background-color: #f8f8ff;
-    }
+    <title>LinkedIn Profile Clone</title>
+    <style>
+      /* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
 
-    .navbar {
+body {
+    background-color: #f3f2ef;
     display: flex;
-    align-items:center;
-    justify-content: space-between;
-    padding: 0 40px;
-    height: 60px;
-    border-left: 4px solid #007bff; /* Blue vertical line */
-  }
-  
-  .site-name {
-    font-size: 20px;
-    font-weight: normal;
-  }
-  
-  .nav-links {
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.profile-container {
+    width: 80%;
+    max-width: 700px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+/* Header/Banner Section */
+.profile-header {
+    position: relative;
+    height: 150px;
+    background-color: #ccd9e8; /* Banner background */
+}
+
+.profile-banner {
+    height: 100%;
+    background-color: #b0c4de;
+}
+
+.profile-photo {
+    position: absolute;
+    bottom: -40px;
+    left: 20px;
+    width: 80px;
+    height: 80px;
+    border: 3px solid #fff;
+    border-radius: 50%;
+    background-color: #ddd;
     display: flex;
-    gap: 20px;
-  }
-  
-  .nav-links a {
-    text-decoration: none;
-    justify-content: space-between;
-    color: black;
-    font-size: 16px;
-    margin-left: 15px;
-    margin-top: 3px;
-  }
-  
-  .cta-button {
-    padding: 10px 20px;
-    background-color: black;
-    color: white;
+    justify-content: center;
+    align-items: center;
+    color: #333;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.camera-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
     border: none;
+    background-color: #fff;
+    padding: 8px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+/* Profile Information */
+.profile-info {
+    padding: 20px;
+    padding-top: 40px;
+    text-align: left;
+}
+
+.profile-info h1 {
+    font-size: 1.5rem;
+    color: #333;
+}
+
+.profile-info span {
+    font-size: 0.9rem;
+    color: gray;
+}
+
+.profile-info p {
+    font-size: 0.9rem;
+    color: #666;
+    margin-top: 5px;
+}
+
+.profile-info a {
+    color: #0073b1;
+    text-decoration: none;
+}
+
+/* Action Buttons */
+.profile-actions {
+    display: flex;
+    gap: 10px;
+    margin: 10px 20px;
+}
+
+.btn {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #0073b1;
+    background-color: #fff;
+    color: #0073b1;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 16px;
-  }
-  
-  .cta-button:hover {
-    background-color: #333;
-  }
+    font-weight: bold;
+}
 
+.btn.primary {
+    background-color: #0073b1;
+    color: #fff;
+}
 
-    .head{ 
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 3em;
-        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+/* Open-to-work Section */
+.open-to-work-box {
+    background-color: #eef3f8;
+    padding: 15px 20px;
+    border-top: 1px solid #ddd;
+}
 
-    }
+.open-to-work-box h3 {
+    font-size: 1rem;
+    margin-bottom: 5px;
+    color: #333;
+}
 
-    .Connect{
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-style: italic;
-    }
+.open-to-work-box p {
+    font-size: 0.9rem;
+    color: #555;
+    margin-bottom: 5px;
+}
 
+.open-to-work-box a {
+    color: #0073b1;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
 
-</style>
+    </style>
+</head>
 <body>
-     <header class="navbar">
-        <div class="site-name">
-            <nav class="nav-links">
-                <div class="nav-links" onclick="window.location.href='index.html'">ExAlumnos</div>
-                <a href="directory.html" style="margin-left: 40px;">Alumni Directory</a>
-                <a href="Studentsignup.html">Register Here</a>
-                <a href="#">Chat</a>
-                <a href="#">Network & Grow</a>
-            </nav>
+    <div class="profile-container">
+        <!-- Header Section -->
+        <div class="profile-header">
+            <div class="profile-banner"></div>
+            <div class="profile-photo">
+                <div class="open-to-work">#OpenToWork</div>
+            </div>
+            <button class="camera-btn">📷</button> <!-- Camera icon -->
         </div>
-        <button class="cta-button">Login</button>
-    </header>
 
-    <h1 style="text-align: center; margin: 20px; color: #333;">Alumni Directory</h1>
-    <div class="directory-container" id="alumniContainer">
-        <!-- Alumni cards will be dynamically injected here -->
+        <!-- Profile Information -->
+        <div class="profile-info">
+            <h1>Abhiyanshu Sharma <span>(He/Him)</span></h1>
+            <p>Shahdol, Madhya Pradesh, India • <a href="#">Contact info</a></p>
+            <p><strong>Gyan Ganga Institute of Technology Sciences</strong></p>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="profile-actions">
+            <button class="btn primary">Open to</button>
+            <button class="btn">Add profile section</button>
+            <button class="btn">Enhance profile</button>
+            <button class="btn">Resources</button>
+        </div>
+
+        <!-- Work Details -->
+        <div class="open-to-work-box">
+            <h3>Open to work</h3>
+            <p>Photographer, Freelance Photographer, Professional...</p>
+            <a href="#">Show details</a>
+        </div>
     </div>
 
-    
 </body>
 
-<script src="js/script.js"></script>
+<script>
+  // Adding interactivity to buttons
+document.addEventListener("DOMContentLoaded", function () {
+    const buttons = document.querySelectorAll(".btn");
+    buttons.forEach(button => {
+        button.addEventListener("click", () => {
+            alert(`You clicked: ${button.textContent}`);
+        });
+    });
+});
 
+</script>
 </html>

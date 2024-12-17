@@ -187,12 +187,14 @@
     console.log('User Email:', result.user.email);
     console.log('User Branch: ', result.user.branch);
     console.log('User Year: ', result.user.year);
+    console.log('User Photo: ', result.user.profilePic);
     alert(result.message); // Login successful
 
     localStorage.setItem('username', result.user.name);
     localStorage.setItem('email', result.user.email);
     localStorage.setItem('branch', result.user.branch);
     localStorage.setItem('year', result.user.year);
+    localStorage.setItem('photo', result.user.profilePic);
 
     // Redirect or perform additional actions
     window.location.href = 'dashboard.html'; // Example redirect after successful login

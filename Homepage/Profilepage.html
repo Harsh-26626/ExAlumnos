@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <style>
+         body {
+            display: flex;
+            flex-direction: column;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #F8F8FF;
+            justify-content: center;
+        
+        }
+
+        .container {
+            width: 100%;
+            
+            background-color: #F8FBF8;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .profile-header {
+            position: relative;
+            height: 150px;
+            background-color: #333;
+        }
+
+        .profile-banner {
+            height: 100%;
+            background-color: #333;
+        }
+
+        .profile-photo {
+             position: absolute;
+             bottom: -40px;
+             left: 20px;
+             width: 120px;
+             height: 120px;
+             border: 3px solid #fff;
+             border-radius: 50%;
+             background-color: #ddd;
+             display: flex;
+             justify-content: center;
+             align-items: center;
+             color: #333;
+             font-size: 12px;
+            font-weight: bold;
+        }
+
+        .profile-info {
+             padding: 20px;
+             padding-top: 40px;
+             text-align: left;
+        }
+
+.profile-info h1 {
+    font-size: 1.5rem;
+    color: #333;
+}
+
+.profile-info span {
+    font-size: 0.9rem;
+    color: gray;
+}
+
+.profile-info p {
+    font-size: 0.9rem;
+    color: #666;
+    margin-top: 5px;
+}
+
+.profile-info a {
+    color: #0073b1;
+    text-decoration: none;
+}
+
+    .profile-btn {
+        display: flex;
+        margin: 15px 25px;
+    }
+
+    .btn1 {
+        flex: 1;
+        padding: 8px;
+        border: 1px solid black;
+        background-color: #333;
+        color: whitesmoke;
+        border-radius: 5px;
+        cursor: pointer;
+        font-weight: bold;
+        text-align: center;
+        border: none;
+        outline: none;
+        text-decoration: none;
+        
+    }
+
+    .btn1:hover {
+        background-color: #272626;
+        color: #ddd;
+    }
+
+
+    </style>
+</head>
+<body>
+    <header id="header-placeholder"></header>
+
+    <script>
+      fetch('header.html')
+        .then(response => response.text())
+        .then(data => {
+          document.getElementById('header-placeholder').innerHTML = data;
+        });
+    </script>
+
+    <div class="container">
+
+        <div class="profile-header">
+            <div class="profile-banner"></div>
+            <div class="profile-photo"></div>
+        </div>
+        
+        <div class="profile-info">
+            <h1>Full Name <span>Gender</span></h1>
+            <p>Address • <a href="#">Contact info</a></p>
+            <p><strong>College Name</strong></p>
+        </div>
+
+        <div class="profile-btn" onclick="">
+            <a href="Editprofile.html" class="btn1" type="button">Edit Your Profile</a>
+        </div>
+
+    </div>
+</body>
+</html>

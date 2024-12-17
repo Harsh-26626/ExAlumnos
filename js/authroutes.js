@@ -43,11 +43,8 @@ async function uploadToS3(file, folderName) {
 }
 
 // Registration Route with Image Upload
-router.post(
-  '/register',
-  upload.fields([{ name: 'profilePic' }, { name: 'bannerPic' }]),
-  async (req, res) => {
-    const { name, college, branch, year, email, password, confirmPassword } = req.body;
+router.post('/register', upload.fields([{ name: 'profilePic' }, { name: 'bannerPic' }]), async (req, res) => {
+  const { name, college, branch, year, email, password, confirmPassword, profilePic, bannerPic } = req.body;
 
     if (password !== confirmPassword) {
       return res.status(400).json({ error: 'Passwords do not match!' });
