@@ -214,7 +214,7 @@ router.post('/login', async (req, res) => {
         }
 
         // Successful login
-        return res.status(200).json({ message: 'Login successful', user: { name: user.name, email: user.email, branch: user.branch, year: user.year, college: user.college}});
+        return res.status(200).json({ message: 'Login successful', user: { name: user.name, email: user.email, branch: user.branch, year: user.year, college: user.college, profilePic: user.profilePic, bannerPic : user.bannerPic}});
     } catch (err) {
         console.error('Error during login:', err);
         res.status(500).json({ error: 'An unknown error occurred.' });

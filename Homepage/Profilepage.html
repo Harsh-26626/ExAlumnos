@@ -16,14 +16,123 @@
         }
 
         .container {
+            display: flex;
+            flex-direction: row;
             width: 100%;
-            
             background-color: #F8FBF8;
             border: 1px solid #ddd;
             border-radius: 10px;
             box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
             overflow: hidden;
+            height: 90vh;
         }
+
+        .pfpcard {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            border-radius: 10px;
+            padding: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            background-color: #F8FBF8;
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .sidebar.open .pfpcard {
+            display: flex;
+        }
+
+        .pfpcard img{
+            width: 100px;
+            height: 100px;
+            border-radius: 60%;
+            object-fit: cover;
+            border-radius: 2px solid #ccc;
+            padding-top: 25px;
+            padding-bottom: 20px;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            width: 0;
+            width: 40px;
+            transition: width 0.3s ease;
+            overflow: hidden;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 15px;
+        }
+
+        .sidebar.open {
+            width: 18%;
+        }
+
+        .menu-btn {
+            background-color: #333;
+            color: white;
+            border: none;
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 15px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .sidebar a {
+            display: block;
+            margin: 15px 0; 
+            color: #333;
+            text-decoration: none;
+            font-weight:bold;
+            text-align: center;
+            position: relative;
+            background-color: #EAEDFB;
+            border-radius: 10px;
+            padding-top: 13px;
+            padding-bottom: 13px;
+            top: 11%;
+            font-size: 16px;
+        }
+
+        .sidebar a:hover {
+            background-color: #c8d1fa;
+            color: black;
+        }
+
+        .sidebar a:before {
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .sidebar a:hover:before {
+            opacity: 1;
+        }
+
+        .main::-webkit-scrollbar{
+            width: 0;
+            height: 0;
+        }
+
+        .main {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            transition: flex 0.3 ease;
+            display: flex;
+            flex-direction: column;
+        }
+
 
         .profile-header {
             position: relative;
@@ -51,6 +160,20 @@
              color: #333;
              font-size: 12px;
             font-weight: bold;
+        }
+
+        #image{
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            border: 3px solid #333;
+            border-radius: 50%;
+        }
+
+        #banner{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         .profile-info {
@@ -122,21 +245,111 @@
 
     <div class="container">
 
-        <div class="profile-header">
-            <div class="profile-banner"></div>
-            <div class="profile-photo"></div>
+        <!-- Left Sidebar -->
+        <div class="sidebar">
+            <div><button class="menu-btn" onclick="toggleSidebar()">☰</button></div>
+            <!-- add name and email here -->
+            <div class="pfpcard">
+                <img id="photo" src="dashboard_icons/Usericon.png" alt="Usericon">
+                <b><div style="padding-bottom: 10px; font-family:Georgia, 'Times New Roman', Times, serif;">Welcome <span id = "username"></span>!</div></b>
+                <b><div style="padding-bottom: 10px; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;"><span id = "email"></span></div></b>
+            </div>
+            <div class="small" style="display: block; padding-top: 260px;">
+                <a href="#"><img src="dashboard_icons/homeicon.png" style="height: 20px; width: 20px;"></a>
+                <a href="#"><img src="dashboard_icons/messegeicon.png" style="height: 20px; width: 20px;"></a>
+                <a href="Profilepage.html"><img src="dashboard_icons/profileicon.png" style="height: 20px; width: 20px;"></a>
+                </div>
+            <div class="big" style="display: none;">
+            <a href="#"><img src="dashboard_icons/homeicon.png" style="height: 20px; width: 20px;"> Home</a>
+            <a href="#"><img src="dashboard_icons/messegeicon.png" style="height: 20px; width: 20px;"> Messages</a>
+            <a href="Profilepage.html"><img src="dashboard_icons/profileicon.png" style="height: 20px; width: 20px;"> Profile</a>
+            </div>
         </div>
-        
-        <div class="profile-info">
-            <h1>Full Name <span>Gender</span></h1>
-            <p>Address • <a href="#">Contact info</a></p>
-            <p><strong>College Name</strong></p>
+        <div class="main">
+            <div class="profile-header">
+                <div class="profile-banner"><img id="banner"></div>
+                <div class="profile-photo"><img id="image"></div>
+            </div>
+            
+            <div class="profile-info">
+                <h1 id="username">Full Name <span>Gender</span></h1>
+                <div style="display: flex;">
+                    <p id="branch">Branch</p>
+                    <p>&nbsp;•&nbsp;Batch of&nbsp;</p>
+                    <p id="year"></p>
+                </div>
+                <p id="college"><strong>College Name</strong></p>
+            </div>
+    
+            <div class="profile-btn" onclick="">
+                <a href="Editprofile.html" class="btn1" type="button">Edit Your Profile</a>
+            </div>
         </div>
-
-        <div class="profile-btn" onclick="">
-            <a href="Editprofile.html" class="btn1" type="button">Edit Your Profile</a>
-        </div>
-
     </div>
 </body>
+
+<script>
+    const username = localStorage.getItem('username');
+    if (username) {
+        document.getElementById('username').textContent = username;
+    } else {
+        // Handle the case where the username is not available
+        document.getElementById('username').textContent = 'Guest';
+    }
+
+    const college = localStorage.getItem('college');
+    if (college) {
+        document.getElementById('college').textContent = college;
+    } else {
+        // Handle the case where the college is not available
+        document.getElementById('college').textContent = 'Guest';
+    }
+    const branch = localStorage.getItem('branch');
+    if (branch) {
+        document.getElementById('branch').textContent = branch;
+    } else {
+        // Handle the case where the branch is not available
+        document.getElementById('branch').textContent = 'Guest';
+    }
+    const email = localStorage.getItem('email');
+    if (email) {
+        document.getElementById('email').textContent = email;
+    } else {
+        document.getElementById('email').textContent = 'guest@Exalumnous.com';
+    }
+    const year = localStorage.getItem('year');
+    if (year) {
+        document.getElementById('year').textContent = year;
+    } else {
+        // Handle the case where the year is not available
+        document.getElementById('year').textContent = 'Guest';
+    }
+
+    const image = localStorage.getItem('photo');
+    document.getElementById('image').src = image;
+    const photo = localStorage.getItem('photo');
+    document.getElementById('photo').src = photo;
+    const banner = localStorage.getItem('banner');
+    document.getElementById('banner').src = banner;
+
+    function toggleSidebar() {
+    const sidebar = document.querySelector('.sidebar');
+    const mainContent = document.querySelector('.main');
+    const big = document.querySelector('.big');
+    const small = document.querySelector('.small');
+
+  if (sidebar.classList.contains('open')) {
+    sidebar.classList.remove('open');
+    mainContent.style.flex = '1';
+    big.style.display = 'none';
+    small.style.display = 'block';
+  } else {
+    sidebar.classList.add('open');
+    mainContent.style.flex = '1';
+    big.style.display = 'block';
+    small.style.display = 'none';
+  }
+}
+</script>
+
 </html>
