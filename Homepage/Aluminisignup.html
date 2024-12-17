@@ -155,7 +155,7 @@
             <p style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Let's get started as <b>Alumni</b></p>
             
             <!-- Registration Form -->
-            <form id="registrationForm">
+            <form id="registrationForm" enctype="multipart/form-data">
                 <div style="margin-top:30px;">
                     <label for="name"><p style="font-family:Georgia, 'Times New Roman', Times, serif;">Name</p></label>
                     <input type="text" id="name" name="name" placeholder="Enter Your Name" required>
@@ -261,22 +261,35 @@
     const formData = new FormData(this); // Includes file inputs automatically
 
     try {
-        const response = await fetch('http://localhost:3000/api/register', {
-            method: 'POST',
-            body: formData, // Send as FormData for file handling
-        });
+    // Log the form data being sent
+    console.log('Sending request with data:', formData);
 
-        if (response.ok) {
-            const responseData = await response.json();
-            alert(responseData.message || 'Registration successful!');
-        } else {
-            const errorData = await response.json();
-            alert(errorData.error || 'There was an issue with the registration!');
-        }
-    } catch (error) {
-        console.error('Error:', error);
-        alert('An unexpected error occurred. Please try again.');
+    const response = await fetch('http://localhost:3000/api/register', {
+        method: 'POST',
+        body: formData, // Send as FormData for file handling
+    });
+
+    if (response.ok) {
+        const responseData = await response.json();
+
+        // Log the response data
+        console.log('Response received:', responseData);
+
+        alert(responseData.message || 'Registration successful!');
+    } else {
+        const errorData = await response.json();
+
+        // Log the error data if response is not ok
+        console.error('Error received:', errorData);
+
+        alert(errorData.error || 'There was an issue with the registration!');
     }
+} catch (error) {
+    console.error('Error:', error);
+
+    // Log the error details
+    alert('An unexpected error occurred. Please try again.');
+}
 });
 
 </script>

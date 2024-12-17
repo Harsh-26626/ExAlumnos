@@ -3,71 +3,91 @@ const router = express.Router();
 const User = require('./user');
 const Student = require('./student');
 const Post = require('./post');
-const AWS = require('aws-sdk');
 const multer = require('multer');
-const multerS3 = require('multer-s3');
 const path = require('path');
+const { S3Client, PutObjectCommand } = require('@aws-sdk/client-s3');
 
-// Initialize AWS S3 with your credentials
-AWS.config.update({
-  accessKeyId: 'AKIAS3VBSOLOZKLXOVEC', // Your access key ID
-  secretAccessKey: 'P78hbQvRSfWNkqjJUp7tjPwkmh1eN77spj7Pi2/8', // Your secret access key
-  region: 'us-east-1', // Your region
+// AWS S3 Configuration
+const s3 = new S3Client({
+  region: 'us-east-1',
+  credentials: {
+    accessKeyId: 'AKIAS3VBSOLOZKLXOVEC', // Your access key ID
+    secretAccessKey: 'P78hbQvRSfWNkqjJUp7tjPwkmh1eN77spj7Pi2/8', // Your secret key
+  },
 });
 
-// Create S3 instance
-const s3 = new AWS.S3();
+const bucketName = 'extralumnos';
 
-// Set up multer storage for AWS S3 with the specified bucket
-const upload = multer({
-  storage: multerS3({
-    s3: s3,
-    bucket: 'extralumnos', // Specify your bucket name here
-    acl: 'public-read', // Set the file access permissions to public
-    contentType: multerS3.AUTO_CONTENT_TYPE,
-    key: function (req, file, cb) {
-      cb(null, `images/${Date.now()}_${file.originalname}`); // Generate unique file names
-    },
-  }),
-});
+// Configure multer for local storage before uploading to S3
+const storage = multer.memoryStorage();
+const upload = multer({ storage });
+
+// Helper function to upload to S3
+async function uploadToS3(file, folderName) {
+  const key = `${folderName}/${Date.now()}_${file.originalname}`;
+  const params = {
+    Bucket: bucketName,
+    Key: key,
+    Body: file.buffer,
+    ContentType: file.mimetype,
+  };
+
+  try {
+    const command = new PutObjectCommand(params);
+    await s3.send(command);
+    return `https://${bucketName}.s3.amazonaws.com/${key}`; // Return the public file URL
+  } catch (error) {
+    console.error('Error uploading to S3:', error);
+    throw error;
+  }
+}
 
 // Registration Route with Image Upload
 router.post('/register', upload.fields([{ name: 'profilePic' }, { name: 'bannerPic' }]), async (req, res) => {
   const { name, college, branch, year, email, password, confirmPassword, profilePic, bannerPic } = req.body;
 
-  if (password !== confirmPassword) {
-    return res.status(400).json({ error: 'Passwords do not match!' });
-  }
-
-  try {
-    const existingUser = await User.findOne({ email });
-    if (existingUser) {
-      return res.status(400).json({ error: 'Email is already registered!' });
+    if (password !== confirmPassword) {
+      return res.status(400).json({ error: 'Passwords do not match!' });
     }
 
-    // Get image URLs from the uploaded files
-    const profilePicUrl = req.files['profilePic'] ? req.files['profilePic'][0].location : null;
-    const bannerPicUrl = req.files['bannerPic'] ? req.files['bannerPic'][0].location : null;
+    try {
+      const existingUser = await User.findOne({ email });
+      if (existingUser) {
+        return res.status(400).json({ error: 'Email is already registered!' });
+      }
 
-    const newUser = new User({
-      name,
-      college,
-      branch,
-      year,
-      email,
-      password,
-      status: 'pending',  // User starts with a pending status
-      profilePic: profilePicUrl,  // Store the URL of the profile pic
-      bannerPic: bannerPicUrl,  // Store the URL of the banner pic
-    });
+      let profilePicUrl = null;
+      let bannerPicUrl = null;
 
-    await newUser.save();
-    res.json({ message: 'Registration successful! Please wait for admin approval.' });
-  } catch (error) {
-    console.error('Error saving user:', error);
-    res.status(500).json({ error: 'An error occurred during registration.' });
+      // Upload files to S3
+      if (req.files['profilePic']) {
+        profilePicUrl = await uploadToS3(req.files['profilePic'][0], 'images/profilePics');
+      }
+
+      if (req.files['bannerPic']) {
+        bannerPicUrl = await uploadToS3(req.files['bannerPic'][0], 'images/bannerPics');
+      }
+
+      const newUser = new User({
+        name,
+        college,
+        branch,
+        year,
+        email,
+        password,
+        status: 'pending',
+        profilePic: profilePicUrl,
+        bannerPic: bannerPicUrl,
+      });
+
+      await newUser.save();
+      res.json({ message: 'Registration successful! Please wait for admin approval.' });
+    } catch (error) {
+      console.error('Error saving user:', error);
+      res.status(500).json({ error: 'An error occurred during registration.' });
+    }
   }
-});
+);
 // Student Registration Route
 router.post('/register-student', async (req, res) => {
   const { name, college, branch, year, email, password, confirmPassword } = req.body;
