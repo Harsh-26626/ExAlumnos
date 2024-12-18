@@ -172,7 +172,7 @@
                     <label for="branch"></label>
                     <select id="branch" name="branch" required>
                       <option value="" disabled selected>Branch</option>
-                      <option value="CS">CSE</option>
+                      <option value="CSE">CSE</option>
                       <option value="AIML">AIML</option>
                       <option value="CSBS">CSBS</option>
                       <option value="IOT">IOT</option>
@@ -210,6 +210,16 @@
                 <input type="checkbox" onclick="myFunction()">Show Password
             </div>
 
+            <div style="margin-top: 30px;">
+              <label for="profilePhoto"><p style="font-family:Georgia, 'Times New Roman', Times, serif;">Profile Photo</p></label>
+              <input type="file" id="profilePhoto" name="profilePic" accept="image/*" required>
+          </div>
+          
+          <div style="margin-top: 30px;">
+              <label for="bannerImage"><p style="font-family:Georgia, 'Times New Roman', Times, serif;">Banner Image</p></label>
+              <input type="file" id="bannerImage" name="bannerPic" accept="image/*" required>
+          </div>
+
             <button type="submit" class="cta-button4">Create Account</button>
         </form>
         </div>
@@ -232,35 +242,35 @@
 
     const formData = new FormData(event.target);
 
-    const studentData = {
-      name: formData.get('name'),
-      college: formData.get('college'),
-      branch: formData.get('branch'),
-      year: formData.get('year'),
-      email: formData.get('email'),
-      password: formData.get('password'),
-      confirmPassword: formData.get('confirmPassword'),
-    };
-
     try {
+      console.log('Sending request with data:', formData);
+
       const response = await fetch('http://localhost:3000/api/register-student', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(studentData),
+        body: formData, // Send as FormData for file handling
       });
 
-      const result = await response.json();
       if (response.ok) {
-        alert(result.message); // Show success message
-        window.location.href = 'index.html'; 
-        event.target.reset(); // Reset form
-      } else {
-        alert(result.error); // Show error message
-      }
-    } catch (error) {
-      console.error('Error during registration:', error);
-      alert('An error occurred. Please try again.');
+        const responseData = await response.json();
+
+        // Log the response data
+        console.log('Response received:', responseData);
+
+        alert(responseData.message || 'Registration successful!');
+    } else {
+        const errorData = await response.json();
+
+        // Log the error data if response is not ok
+        console.error('Error received:', errorData);
+
+        alert(errorData.error || 'There was an issue with the registration!');
     }
+} catch (error) {
+    console.error('Error:', error);
+
+    // Log the error details
+    alert('An unexpected error occurred. Please try again.');
+}
   });
 </script>
 </html>

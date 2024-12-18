@@ -21,6 +21,14 @@ const postSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  profilePic: {
+    type: String, // URL of the profile picture
+    required: true,
+  },
+  bannerPic: {
+    type: String, // URL of the banner picture
+    required: true,
+  }
 });
 
 const Post = mongoose.model('Post', postSchema);

@@ -7,6 +7,12 @@ const studentSchema = new mongoose.Schema({
   year: { type: String, required: true },
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
+  profilePic: {
+    type: String, // URL of the profile picture
+  },
+  bannerPic: {
+    type: String, // URL of the banner picture
+  }
 });
 
 const Student = mongoose.model('Student', studentSchema);

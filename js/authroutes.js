@@ -89,8 +89,8 @@ router.post('/register', upload.fields([{ name: 'profilePic' }, { name: 'bannerP
   }
 );
 // Student Registration Route
-router.post('/register-student', async (req, res) => {
-  const { name, college, branch, year, email, password, confirmPassword } = req.body;
+router.post('/register-student', upload.fields([{ name: 'profilePic' }, { name: 'bannerPic' }]), async (req, res) => {
+  const { name, college, branch, year, email, password, confirmPassword, profilePic, bannerPic } = req.body;
 
   if (!email.endsWith('@ggits.net')) {
     return res.status(400).json({ error: 'Invalid email id' });
@@ -107,6 +107,18 @@ router.post('/register-student', async (req, res) => {
       return res.status(400).json({ error: 'Email is already registered as a student!' });
     }
 
+    let profilePicUrl = null;
+      let bannerPicUrl = null;
+
+      // Upload files to S3
+      if (req.files['profilePic']) {
+        profilePicUrl = await uploadToS3(req.files['profilePic'][0], 'images/profilePics');
+      }
+
+      if (req.files['bannerPic']) {
+        bannerPicUrl = await uploadToS3(req.files['bannerPic'][0], 'images/bannerPics');
+      }
+
     const newStudent = new Student({
       name,
       college,
@@ -114,6 +126,8 @@ router.post('/register-student', async (req, res) => {
       year,
       email,
       password, // Store the plain-text password directly
+      profilePic: profilePicUrl,
+      bannerPic: bannerPicUrl,
     });
 
     await newStudent.save();
@@ -238,7 +252,7 @@ router.post('/student-login', async (req, res) => {
       }
 
       // Successful login
-      return res.status(200).json({ message: 'Login successful', student: { name: student.name, email: student.email, branch: student.branch, year: student.year}});
+      return res.status(200).json({ message: 'Login successful', student: { name: student.name, email: student.email, branch: student.branch, year: student.year, college: student.college, profilePic: student.profilePic, bannerPic : student.bannerPic}});
   } catch (err) {
       console.error('Error during login:', err);
       res.status(500).json({ error: 'An unknown error occurred.' });
@@ -247,7 +261,7 @@ router.post('/student-login', async (req, res) => {
 
 // Create Post
 router.post('/post', async (req, res) => {
-  const {name, branch,title, post, year} = req.body;
+  const {name, branch,title, post, year, profilePic, bannerPic} = req.body;
 
   try {
     const newPost = new Post({
@@ -256,6 +270,8 @@ router.post('/post', async (req, res) => {
       post,
       branch,
       year,
+      profilePic,
+      bannerPic,
     });
 
     await newPost.save();

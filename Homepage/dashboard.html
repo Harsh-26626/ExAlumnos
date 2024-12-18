@@ -268,12 +268,12 @@
                 <b><div style="padding-bottom: 10px; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;"><span id = "email"></span></div></b>
             </div>
             <div class="small" style="display: block; padding-top: 260px;">
-                <a href="#"><img src="dashboard_icons/homeicon.png" style="height: 20px; width: 20px;"></a>
+                <a href="dashboard.html"><img src="dashboard_icons/homeicon.png" style="height: 20px; width: 20px;"></a>
                 <a href="#"><img src="dashboard_icons/messegeicon.png" style="height: 20px; width: 20px;"></a>
                 <a href="Profilepage.html"><img src="dashboard_icons/profileicon.png" style="height: 20px; width: 20px;"></a>
                 </div>
             <div class="big" style="display: none;">
-            <a href="#"><img src="dashboard_icons/homeicon.png" style="height: 20px; width: 20px;"> Home</a>
+            <a href="dashboard.html"><img src="dashboard_icons/homeicon.png" style="height: 20px; width: 20px;"> Home</a>
             <a href="#"><img src="dashboard_icons/messegeicon.png" style="height: 20px; width: 20px;"> Messages</a>
             <a href="Profilepage.html"><img src="dashboard_icons/profileicon.png" style="height: 20px; width: 20px;"> Profile</a>
             </div>
@@ -325,7 +325,7 @@
                     postCard.classList.add('post');
                     postCard.innerHTML = `
                     <div class="post-header">
-                        <img src="${post.image}" alt="${post.name}">
+                        <img src="${post.profilePic}" alt="${post.name}">
                         <div>
                             <strong style ="font-size: 17px;">${post.name}</strong>
                             <div style ="display:flex; justify-content: centre; padding-top: 6px; font-size: 15px;">${post.branch} - Batch of ${post.year}</div>
@@ -360,6 +360,8 @@
     const photo = localStorage.getItem('photo');
     document.getElementById('photo').src = photo;
 
+    const banner = localStorage.getItem('banner');
+
     const branch = localStorage.getItem('branch');
     const year = localStorage.getItem('year');
 
@@ -374,6 +376,8 @@
       post: formData.get('post'),
       branch: branch,
       year: year,
+      profilePic : photo,
+      bannerPic : banner,
     };
 
     try {
