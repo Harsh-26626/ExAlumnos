@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Upload to AWS S3</title>
+    <script>
+        async function uploadImage() {
+            const fileInput = document.getElementById('fileInput');
+            const file = fileInput.files[0];
+
+            if (!file) {
+                alert('Please select a file to upload.');
+                return;
+            }
+
+            try {
+                // Fetch the signed URL from your backend
+                const response = await fetch('/get-signed-url', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ fileName: file.name, fileType: file.type }),
+                });
+
+                if (!response.ok) {
+                    throw new Error('Failed to get signed URL');
+                }
+
+                const { signedUrl, publicUrl } = await response.json();
+
+                // Upload the file to S3 using the signed URL
+                const uploadResponse = await fetch(signedUrl, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': file.type,
+                    },
+                    body: file,
+                });
+
+                if (!uploadResponse.ok) {
+                    throw new Error('Failed to upload the file');
+                }
+
+                alert(`File uploaded successfully! Public URL: ${publicUrl}`);
+            } catch (error) {
+                console.error(error);
+                alert('An error occurred: ' + error.message);
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Upload Image to AWS S3</h1>
+    <input type="file" id="fileInput" accept="image/*">
+    <button onclick="uploadImage()">Upload</button>
+</body>
+</html>

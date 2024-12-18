@@ -39,8 +39,8 @@ document.addEventListener('DOMContentLoaded', function() {
         <strong>${user.name}</strong> (${user.email})
       </div>
       <div>
-        <button class="approve" data-id="${user._id}">Approve</button>
-        <button class="reject" data-id="${user._id}">Reject</button>
+        <button class="approve" data-id="${user._id}">✔ Approve</button>
+        <button class="reject" data-id="${user._id}">✖ Reject</button>
       </div>
     `;
     
