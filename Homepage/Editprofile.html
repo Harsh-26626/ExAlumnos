@@ -52,7 +52,7 @@
         box-shadow: 0 0 0;
         width: 100%;
         text-align: center;
-        margin-top: 100px;
+        margin-top: 60px;
         color: #F8F8FF;
     }
 
@@ -97,6 +97,20 @@
         text-align: center;
         margin-top: 40px;
         color: #F8F8FF;
+    }
+
+    #profilePhoto{
+        font-family: Georgia, 'Times New Roman', Times, serif;
+        color:#F8F8FF;
+        text-align: center;
+        justify-content: center;
+
+    }
+
+    #bannerImage{
+        font-family: Georgia, 'Times New Roman', Times, serif;
+        color: #F8F8FF;
+        text-align: center;
     }
 
     .submit {
@@ -149,23 +163,33 @@
 
             <div>
                 <label for="About"></label>
-                <input type="text" class="About" name="About" placeholder="Something about yourself" required>
+                <input type="text" class="About" name="About" placeholder="Something about yourself">
             </div>
 
             
             <div>
                 <label for="LinkedIn"></label>
-                <input type="text" class="LinkedIn" name="LinkedIn" placeholder="Enter Your LinkedIn ID" required>
+                <input type="text" class="LinkedIn" name="LinkedIn" placeholder="Enter Your LinkedIn ID">
             </div>
 
             <div>
                 <label for="Insta"></label>
-                <input type="text" class="Insta" name="Insta" placeholder="Enter Your Instagram ID" required>
+                <input type="text" class="Insta" name="Insta" placeholder="Enter Your Instagram ID">
             </div>
 
             <div>
                 <label for="Github"></label>
-                <input type="text" class="Github" name="Githup" placeholder="Enter Your Github ID" required>
+                <input type="text" class="Github" name="Githup" placeholder="Enter Your Github ID">
+            </div>
+
+            <div>
+                <label for="profilePhoto"><p id="profilePhoto">Profile Photo</p></label>
+                <input type="file" id="profilePhoto" name="profilePic" accept="image/*">
+            </div>
+            
+            <div>
+                <label for="bannerImage"><p id="bannerImage">Banner Image</p></label>
+                <input type="file" id="bannerImage" name="bannerPic" accept="image/*">
             </div>
 
             <div>
