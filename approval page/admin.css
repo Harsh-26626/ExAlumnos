@@ -8,7 +8,7 @@ body {
 }
 
 header {
-  background-color: #4CAF50;
+  background-color: #333;
   padding: 10px;
   color: white;
   text-align: center;
@@ -16,6 +16,13 @@ header {
 
 section {
   margin-top: 20px;
+}
+
+.Puser{
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #252525;
+  letter-spacing: 1.5px;
+  font-size: 30px;
 }
 
 #pendingUsersList {
@@ -33,6 +40,8 @@ section {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 24px;
 }
 
 button {
@@ -49,17 +58,17 @@ button:hover {
 }
 
 button.approve {
-  background-color: #4CAF50;
+  background-color: #2c702b;
   color: white;
 }
 
 button.reject {
-  background-color: #f44336;
+  background-color: #c22116;
   color: white;
 }
 
 footer {
   text-align: center;
   margin-top: 30px;
-  font-size: 14px;
+  font-size: 16px;
 }
