@@ -7,6 +7,8 @@ const authRoutes = require('./authroutes'); // Import routes for authentication 
 
 const app = express();
 
+app.use('/Homepage', express.static('Homepage'));
+
 // Enable CORS
 app.use(cors());
 
@@ -52,6 +54,22 @@ try {
 } catch (err) {
     res.status(500).json({ error: 'Failed to fetch alumni data' });
 }
+});
+
+app.get('/api/posts', async (req, res) => {
+  const { email } = req.query;
+  if (!email) {
+      return res.status(400).json({ error: 'Email is required.' });
+  }
+
+  try {
+      // Find posts with the specific email
+      const posts = await Post.find({ email });
+      res.status(200).json(posts);
+  } catch (error) {
+      console.error('Error fetching posts:', error);
+      res.status(500).json({ error: 'Internal server error.' });
+  }
 });
 
 // Serve static files for images (optional if using local file server)

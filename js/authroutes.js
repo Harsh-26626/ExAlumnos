@@ -261,11 +261,12 @@ router.post('/student-login', async (req, res) => {
 
 // Create Post
 router.post('/post', async (req, res) => {
-  const {name, branch,title, post, year, profilePic, bannerPic} = req.body;
+  const {name, email, branch,title, post, year, profilePic, bannerPic} = req.body;
 
   try {
     const newPost = new Post({
       name,
+      email,
       title,
       post,
       branch,
@@ -279,6 +280,36 @@ router.post('/post', async (req, res) => {
   } catch (error) {
     console.error('Cannot Create Post:', error);
     res.status(500).json({ error: 'An error occurred while creating post.' });
+  }
+});
+
+router.post('/fetch-profile', async (req, res) => {
+  const {email} = req.body;  // Get email and password from the request
+
+  try {
+      // Find the student by email
+      const profile = await Student.findOne({ email });
+
+      if (!profile) {
+          return res.status(404).json({ error: 'Profile not found' });
+      }
+
+      // Successful login
+      return res.status(200).json({
+        message: 'Profile Found',
+        profile: {
+          name: profile.name,      // Correct: Use 'profile'
+          email: profile.email,
+          branch: profile.branch,
+          year: profile.year,
+          college: profile.college,
+          profilePic: profile.profilePic,
+          bannerPic: profile.bannerPic
+        }
+      });
+  } catch (err) {
+      console.error('Error finding profile:', err);
+      res.status(500).json({ error: 'An unknown error occurred.' });
   }
 });
 

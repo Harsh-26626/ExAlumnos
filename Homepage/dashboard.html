@@ -199,6 +199,11 @@
             margin-bottom: 10px;
         }
 
+        .post-header a {
+            text-decoration: none;
+            color: #333;
+        }
+
         .post-header img {
             width: 40px;
             height: 40px;
@@ -290,24 +295,6 @@
                 <div style="display: flex; justify-content: end;"><button type="submit">Create a post</button></div>
             </div>
             </form>
-
-            <!-- Posts -->
-            <div class="post">
-                <div class="post-header">
-                    <img src="https://via.placeholder.com/40" alt="User">
-                    <div>
-                        <strong>Smith Jems</strong>
-                        <p>CS</p>
-                        <p>12h ago</p>
-                    </div>
-                </div>
-                <p>In the fast-paced world of corporate life, it's crucial to prioritize your mental peace...</p>
-                <div class="post-actions">
-                    <span>2.8K Likes</span>
-                    <span>7 Comments</span>
-                    <span>Share</span>
-                </div>
-            </div>
         </div>
     </div>
 </body>
@@ -327,7 +314,7 @@
                     <div class="post-header">
                         <img src="${post.profilePic}" alt="${post.name}">
                         <div>
-                            <strong style ="font-size: 17px;">${post.name}</strong>
+                            <strong style ="font-size: 17px;"><a href="viewprofile.html" onclick="storeEmail('${post.email}')">${post.name}</a></strong>
                             <div style ="display:flex; justify-content: centre; padding-top: 6px; font-size: 15px;">${post.branch} - Batch of ${post.year}</div>
                         </div>
                     </div>
@@ -340,6 +327,10 @@
                 console.error('Error fetching post data:', error);
             }
         }
+    function storeEmail(input) {
+        console.log("Input value:", input);
+        localStorage.setItem('input', input);
+    }
         fetchPost();
 
     // Retrieve the username from localStorage
@@ -372,6 +363,7 @@
 
     const postData = {
       name: username,
+      email: email,
       title: formData.get('title'),
       post: formData.get('post'),
       branch: branch,

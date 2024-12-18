@@ -205,32 +205,6 @@
     text-decoration: none;
 }
 
-    .profile-btn {
-        display: flex;
-        margin: 15px 25px;
-    }
-
-    .btn1 {
-        flex: 1;
-        padding: 8px;
-        border: 1px solid black;
-        background-color: #333;
-        color: whitesmoke;
-        border-radius: 5px;
-        cursor: pointer;
-        font-weight: bold;
-        text-align: center;
-        border: none;
-        outline: none;
-        text-decoration: none;
-        margin-bottom: 30px;
-    }
-
-    .btn1:hover {
-        background-color: #272626;
-        color: #ddd;
-    }
-
     .post {
             background: #fff;
             padding: 15px;
@@ -303,59 +277,55 @@
                 </div>
                 <p id="college"><strong>College Name</strong></p>
             </div>
-    
-            <div class="profile-btn" onclick="">
-                <a href="Editprofile.html" class="btn1" type="button">Edit Your Profile</a>
-            </div>
         </div>
     </div>
 </body>
 
 <script>
+    const email = localStorage.getItem('input');
+    console.log('Email being sent:', email);
+
+async function loadProfile() {
+  try {
+    const response = await fetch('http://localhost:3000/api/fetch-profile', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email }) // Send 'email'
+    });
+
+    const result = await response.json();
+
+    if (response.ok) {
     const username = localStorage.getItem('username');
-    if (username) {
-        document.getElementById('username').textContent = username;
-        document.getElementById('user').textContent = username;
-    } else {
-        // Handle the case where the username is not available
-        document.getElementById('username').textContent = 'Guest';
-        document.getElementById('user').textContent = 'Guest';
-    }
+      document.getElementById('username').textContent = username;
+      document.getElementById('user').textContent = result.profile.name;
 
-    const college = localStorage.getItem('college');
-    if (college) {
-        document.getElementById('college').textContent = college;
-    } else {
-        // Handle the case where the college is not available
-        document.getElementById('college').textContent = 'Guest';
-    }
-    const branch = localStorage.getItem('branch');
-    if (branch) {
-        document.getElementById('branch').textContent = branch;
-    } else {
-        // Handle the case where the branch is not available
-        document.getElementById('branch').textContent = 'Guest';
-    }
-    const email = localStorage.getItem('email');
-    if (email) {
-        document.getElementById('email').textContent = email;
-    } else {
-        document.getElementById('email').textContent = 'guest@Exalumnous.com';
-    }
-    const year = localStorage.getItem('year');
-    if (year) {
-        document.getElementById('year').textContent = year;
-    } else {
-        // Handle the case where the year is not available
-        document.getElementById('year').textContent = 'Guest';
-    }
+      document.getElementById('college').textContent = result.profile.college;
+      document.getElementById('branch').textContent = result.profile.branch;
+      const mail = localStorage.getItem('email');
+      document.getElementById('email').textContent = mail;
+      document.getElementById('year').textContent = result.profile.year;
 
-    const image = localStorage.getItem('photo');
-    document.getElementById('image').src = image;
-    const photo = localStorage.getItem('photo');
-    document.getElementById('photo').src = photo;
-    const banner = localStorage.getItem('banner');
-    document.getElementById('banner').src = banner;
+      const image = localStorage.getItem('photo');
+
+      document.getElementById('image').src = result.profile.profilePic;
+      document.getElementById('photo').src = image;
+      document.getElementById('banner').src = result.profile.bannerPic;
+    } else {
+      alert(result.error);
+    }
+  } catch (error) {
+    console.error('Error fetching profile:', error);
+    alert('An error occurred. Please try again later.');
+  }
+}
+
+if (!email) {
+  alert('No profile email found. Please log in again.');
+} else {
+  loadProfile();
+}
+        
 
     function toggleSidebar() {
     const sidebar = document.querySelector('.sidebar');
@@ -405,18 +375,20 @@ async function fetchPostsByEmail(email) {
             const postCard = document.createElement('div');
             postCard.classList.add('post');
             postCard.innerHTML = `
-                <div class="post-header">
-                    <img src="${post.profilePic}" alt="${post.name}">
-                    <div>
-                        <strong style="font-size: 17px;">${post.name}</strong>
-                        <div style="display: flex; justify-content: center; padding-top: 6px; font-size: 15px;">
-                            ${post.branch} - Batch of ${post.year}
-                        </div>
-                    </div>
-                </div>
-                <div style="font-family: 'Alkatra'; font-size: 20px;">${post.title}</div>
-                <p style="font-family: 'ABeeZee';">${post.post}</p>
-            `;
+    <div class="post-header">
+        <img src="${post.profilePic}" alt="${post.name}">
+        <div>
+            <strong style="font-size: 17px;">
+                <a href="viewprofile.html" style="text-decoration: none; color: inherit;">${post.name}</a>
+            </strong>
+            <div style="display: flex; justify-content: center; padding-top: 6px; font-size: 15px;">
+                ${post.branch} - Batch of ${post.year}
+            </div>
+        </div>
+    </div>
+    <div style="font-family: 'Alkatra'; font-size: 20px;">${post.title}</div>
+    <p style="font-family: 'ABeeZee';">${post.post}</p>
+`;
             postContainer.appendChild(postCard);
         });
     } catch (error) {
