@@ -4,6 +4,7 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const connectDB = require('./db'); // Import the DB connection function
 const authRoutes = require('./authroutes'); // Import routes for authentication and other actions
+const io = require('socket.io')(8000)
 
 const app = express();
 

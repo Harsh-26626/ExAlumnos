@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat</title>
+    <script defer src="http://localhost:7000/socket.io/socket.io.js"></script>
+    <script defer src="chat.js"></script>
+    <link rel="stylesheet" href="chat.css">
+</head>
+<body>
+
+    <header id="header-placeholder"></header>
+
+<script>
+  fetch('header2.html')
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById('header-placeholder').innerHTML = data;
+    });
+</script>
+
+    <div id="chatbox">
+        <div class="container">
+            <div class="message right">Harsh: Hey</div>
+            <div class="message left">Abhiyanshu : Hii</div>
+        </div>
+    </div>
+    <div class="send">
+        <form action="#" id="send-container">
+            <input type="text" name="messageimp" id="messageimp" placeholder="Your Message...">
+            <button class="btn" type="submit">Send</button>
+        </form>
+    </div>
+    
+</body>
+</html>
