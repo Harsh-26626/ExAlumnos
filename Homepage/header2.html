@@ -4,81 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
-  <style>
-    .navbar {
-    display: flex;
-    align-items:center;
-    justify-content: space-between;
-    padding: 0 40px;
-    height: 60px;
-    border-left: 4px solid #007bff; /* Blue vertical line */
-    padding-bottom: 2px;
-  }
-  
-  .site-name {
-    font-size: 20px;
-    font-weight: normal;
-  }
-  
-  .nav-links {
-    display: flex;
-    gap: 20px;
-  }
-  
-  .nav-links a {
-    text-decoration: none;
-    justify-content: space-between;
-    color: black;
-    font-size: 16px;
-    margin-left: 15px;
-    margin-top: 3px;
-  }
-  
-  .dropdown {
-  position: relative;
-  display: inline-block;
-  padding: 6px 15px;
-  background-color: black;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 16px;
-  margin-right: 40px;
-}
-
-.dropbtn {
-  background-color: black;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  cursor: pointer;
-}
-
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: black;
-  z-index: 1;
-  min-width: 160px;
-}
-
-
-.dropdown-content a {
-  display: block;
-  color: white;
-  padding: 10px 15px;
-  text-decoration: none;
-}
-
-.dropdown-content a:hover {
-  background-color: #333;
-}
-
-.dropdown:hover .dropdown-content {
-  display: block;
-}
-</style>
+  <link rel="stylesheet" href="css/header2.css">
 </head>
 <body>
   <header id="header" class="navbar">
@@ -95,20 +21,7 @@
     </div>
 </header>
 
-<script>
-    function logout() {
-        console.log("username:", localStorage.getItem('username'));
-        localStorage.setItem('input', input);
-        localStorage.setItem('username', "Guest");
-    localStorage.setItem('email', "Guest@ExAlumnos.com");
-    localStorage.setItem('college', "Gyan Ganga Group");
-    localStorage.setItem('branch', "");
-    localStorage.setItem('year', "");
-    localStorage.setItem('photo', result.user.profilePic);
-    localStorage.setItem('banner', result.user.bannerPic);
-    console.log("username:", localStorage.getItem('username'));
-    }
-</script>
+<script src="./js/header2.js"></script>
 
 </body>
 

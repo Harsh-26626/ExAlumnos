@@ -1,0 +1,81 @@
+  
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background-color: #F8F8FF;
+        background-image: url('../homebg.jpg');
+        background-size: cover; 
+      }
+    
+      .bgimage{
+        background-color: #F5F5F5;
+        margin-top: 20px;
+        padding: 50px;
+        border-radius: 15px;
+        margin-left: 15%;
+        margin-right: 15%;
+      }
+    
+      .welcome {
+        text-align: center;
+      }
+    
+      .moto{
+        font-size: 21px;
+        overflow: hidden;
+        border-right: 0.15em solid #F5F5F5;
+        white-space: nowrap;
+        animation: typing 6.5s ease-in-out;
+        animation-iteration-count: infinite;
+        animation-direction: alternate;
+      }
+    
+      @keyframes typing {
+        from{
+          width: 0;
+        }
+        to {
+          width: 100%;
+        }
+    
+      }
+    
+    
+      .mission{
+        text-align: center;
+        margin-top: 70px;
+        font-size: 45px;
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+      }
+      
+      .cta-button2 {
+        padding: 10px 20px;
+        background-color: black;
+        color: white;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+        font-size: 16px;
+        margin-top: 10%;
+      }
+    
+      .cta-button2:hover {
+        background-color: #333;
+      }
+    
+      .cta-button3 {
+        padding: 10px 20px;
+        background-color: black;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        margin-top: 10%;
+      }
+    
+      .cta-button3:hover {
+        background-color: #333;
+      }
+    
+    
