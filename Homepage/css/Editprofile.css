@@ -1,0 +1,132 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: grey;
+   }
+
+   .container {
+    display: flex;
+justify-content: center;
+width: 100%;
+margin-top: 30px;
+   }
+
+   .form {
+display: flex;
+flex-direction: column;
+gap: 10px;
+padding-left: 2em;
+padding-right: 2em;
+padding-bottom: 0.4em;
+background-color: #333;
+border-radius: 25px;
+transition: .4s ease-in-out;
+width: 40%;
+height: 670px;
+}
+
+
+.title {
+    margin-top: 60px;
+    text-decoration: solid;
+    font-size: 2em;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: #F8F8FF;
+
+}
+
+.About {
+    background: transparent;
+    outline-style: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: solid white 2px;
+    box-shadow: 0 0 0;
+    width: 100%;
+    text-align: center;
+    margin-top: 50px;
+    color: #F8F8FF;
+}
+
+.LinkedIn{
+    background: transparent;
+    outline-style: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: solid white 2px;
+    box-shadow: 0 0 0;
+    width: 100%;
+    text-align: center;
+    margin-top: 40px;
+    color: #F8F8FF;
+   
+}
+
+.Insta {
+    background: transparent;
+    outline-style: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: solid white 2px;
+    box-shadow: 0 0 0;
+    width: 100%;
+    text-align: center;
+    margin-top: 40px;
+    color: #F8F8FF;
+}
+
+.Github {
+    background: transparent;
+    outline-style: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: solid white 2px;
+    box-shadow: 0 0 0;
+    width: 100%;
+    text-align: center;
+    margin-top: 40px;
+    color: #F8F8FF;
+}
+
+#profilePhoto{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color:#F8F8FF;
+    text-align: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+
+#bannerImage{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: #F8F8FF;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.submit {
+    padding: 0.9em;
+    padding-left: 1em;
+    padding-right: 1em;
+    border-radius: 5px;
+    margin-right: 0.5em;
+    border: none;
+    outline: none;
+    transition: .4s ease-in-out;
+    background-color: #252525;
+    color: white;
+    width: 40%;
+    text-decoration: none;
+    text-align: center;
+    font-size: small;
+    margin-left: 190px;
+    margin-top: 50px;
+}
+
+.submit:hover {
+   background-color: black;
+   color: white;
+}
