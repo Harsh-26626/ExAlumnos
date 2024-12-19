@@ -23,6 +23,7 @@ body {
             margin-top: 25px;
             flex-wrap: wrap;
             gap: 20px;
+            cursor: pointer;
         }
 
         .alumni-card {
@@ -41,11 +42,19 @@ body {
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
         }
 
-        .alumni-image {
+        .profile-banner {
             width: 100%;
             height: 200px;
             object-fit: cover;
         }
+
+        .profile-photo {
+            height: 380px;
+            width: 380px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin-top: 10px;
+       }
 
         .alumni-info {
             padding: 15px;

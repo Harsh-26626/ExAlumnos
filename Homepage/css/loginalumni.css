@@ -4,6 +4,18 @@ body {
     margin: 0;
     background-color: #bbb;
   }
+
+.title {
+  display: flex; 
+  width: 100%;
+  justify-content: center;
+  margin-top: 60px;
+  height: 140px;
+  font-family: 'Halohandletter', sans-serif;
+  color: white;
+  font-size: 7em;
+}
+
 .dgrade{
     display: flex;
     justify-content: center;
