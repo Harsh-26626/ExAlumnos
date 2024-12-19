@@ -39,6 +39,7 @@ body {
 
 /* Sidebar */
 .sidebar {
+    overflow-y: visible;
     display: flex;
     flex-direction: column;
     width: 0;
@@ -242,7 +243,6 @@ body {
 }
 
 .Contact-us{
-    padding-top: 60px;
-    text-align: center;
-    
+    padding-top: 40px;
+    text-align: center; 
 }
