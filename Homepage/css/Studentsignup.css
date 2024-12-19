@@ -33,7 +33,7 @@ body {
 }
 
 #imgcontainer{
-    background-image: url('base.jpg');
+    background-image: url('../base.jpg');
     width: 50%;
     height: 700px;
     border-radius: 15px;

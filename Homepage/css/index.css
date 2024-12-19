@@ -3,7 +3,7 @@
         margin: 0;
         font-family: Arial, sans-serif;
         background-color: #F8F8FF;
-        background-image: url('homebg.jpg');
+        background-image: url('../homebg.jpg');
         background-size: cover; 
       }
     
