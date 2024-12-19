@@ -203,6 +203,12 @@ body {
     height: 0;
 }
 
+.Contact-us{
+    padding-top: 60px;
+    text-align: center;
+    
+}
+
 /* Main content */
 .main {
     flex: 1;
