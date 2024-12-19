@@ -20,8 +20,32 @@
     });
 </script>
 
+    <div class="container">
+
+    <!-- Left Sidebar -->
+    <div class="sidebar">
+        <div><button class="menu-btn" onclick="toggleSidebar()">☰</button></div>
+        <!-- add name and email here -->
+        <div class="pfpcard">
+            <img id="photo" src="dashboard_icons/Usericon.png" alt="Usericon">
+            <b><div style="padding-bottom: 10px; font-family:Georgia, 'Times New Roman', Times, serif;">Welcome <span id = "username"></span>!</div></b>
+            <b><div style="padding-bottom: 10px; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;"><span id = "email"></span></div></b>
+        </div>
+        <div class="small" style="display: block; padding-top: 260px;">
+            <a href="dashboard.html"><img src="dashboard_icons/homeicon.png" style="height: 20px; width: 20px;"></a>
+            <a href="chat.html"><img src="dashboard_icons/messegeicon.png" style="height: 20px; width: 20px;"></a>
+            <a href="Profilepage.html"><img src="dashboard_icons/profileicon.png" style="height: 20px; width: 20px;"></a>
+            </div>
+        <div class="big" style="display: none;">
+        <a href="dashboard.html"><img src="dashboard_icons/homeicon.png" style="height: 20px; width: 20px;"> Home</a>
+        <a href="chat.html"><img src="dashboard_icons/messegeicon.png" style="height: 20px; width: 20px;"> Messages</a>
+        <a href="Profilepage.html"><img src="dashboard_icons/profileicon.png" style="height: 20px; width: 20px;"> Profile</a>
+        </div>
+    </div>
+
+    <div class="main">
     <div id="chatbox">
-        <div class="container">
+        <div class="tmp">
             <div class="message right">Harsh: Hey</div>
             <div class="message left">Abhiyanshu : Hii</div>
         </div>
@@ -32,6 +56,10 @@
             <button class="btn" type="submit">Send</button>
         </form>
     </div>
+    </div>
+</div>
+
+    <script src="../chat2.js"></script>
     
 </body>
 </html>

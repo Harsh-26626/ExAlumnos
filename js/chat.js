@@ -19,18 +19,18 @@ const users ={};
 io.on('connection', socket => {
     console.log('A user connected');
 
-    socket.on('new-user-joined', user =>{
-        console.log("New User", user);
-        users[socket.id] = user;
-        socket.broadcast.emit('user-joined', user);
+    socket.on('new-user-joined', ({ user, userimg }) =>{
+        console.log("New User:", user, userimg);
+        users[socket.id] = { user, userimg };
+        socket.broadcast.emit('user-joined', { user, userimg });
     })
 
     // Handle 'send' event from a client
-    socket.on('send', message => {
+    socket.on('send', ({user, message, userimg }) => {
         console.log(`Message received: ${message}`);
         
         // Broadcast the message to all other clients
-        socket.broadcast.emit('receive', {message: message, user: users[socket.id]});
+        socket.broadcast.emit('receive', {user, message, userimg });
     });
 
     // Handle client disconnect
