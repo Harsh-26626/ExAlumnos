@@ -5,7 +5,7 @@
     <link href='https://fonts.googleapis.com/css?family=ABeeZee' rel='stylesheet'>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile</title>
+    <title id="see">View Profile</title>
     <style>
          body {
             display: flex;
@@ -233,7 +233,7 @@
     <header id="header-placeholder"></header>
 
     <script>
-      fetch('header.html')
+      fetch('header2.html')
         .then(response => response.text())
         .then(data => {
           document.getElementById('header-placeholder').innerHTML = data;
@@ -285,18 +285,46 @@
     const email = localStorage.getItem('input');
     console.log('Email being sent:', email);
 
-async function loadProfile() {
-  try {
-    const response = await fetch('http://localhost:3000/api/fetch-profile', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email }) // Send 'email'
-    });
+    async function loadProfile() {
+    try {
+        // First, try fetching from the Student database
+        let response = await fetch('http://localhost:3000/api/fetch-profile-student', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email }) // Send 'email'
+        });
 
-    const result = await response.json();
+        let result = await response.json();
 
-    if (response.ok) {
-    const username = localStorage.getItem('username');
+        if (response.ok) {
+            const username = localStorage.getItem('username');
+      document.getElementById('username').textContent = username;
+      document.getElementById('see').textContent = result.profile.name;
+      document.getElementById('user').textContent = result.profile.name;
+
+      document.getElementById('college').textContent = result.profile.college;
+      document.getElementById('branch').textContent = result.profile.branch;
+      const mail = localStorage.getItem('email');
+      document.getElementById('email').textContent = mail;
+      document.getElementById('year').textContent = result.profile.year;
+
+      const image = localStorage.getItem('photo');
+
+      document.getElementById('image').src = result.profile.profilePic;
+      document.getElementById('photo').src = image;
+      document.getElementById('banner').src = result.profile.bannerPic;
+        } else {
+            // If not found in Student database, fetch from User database
+            response = await fetch('http://localhost:3000/api/fetch-profile-user', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email }) // Send 'email'
+            });
+
+            result = await response.json();
+
+            if (response.ok) {
+                const username = localStorage.getItem('username');
       document.getElementById('username').textContent = username;
       document.getElementById('user').textContent = result.profile.name;
 
@@ -311,13 +339,14 @@ async function loadProfile() {
       document.getElementById('image').src = result.profile.profilePic;
       document.getElementById('photo').src = image;
       document.getElementById('banner').src = result.profile.bannerPic;
-    } else {
-      alert(result.error);
+            } else {
+                alert('Profile not found in both databases.');
+            }
+        }
+    } catch (error) {
+        console.error('Error fetching profile:', error);
+        alert('An error occurred. Please try again later.');
     }
-  } catch (error) {
-    console.error('Error fetching profile:', error);
-    alert('An error occurred. Please try again later.');
-  }
 }
 
 if (!email) {

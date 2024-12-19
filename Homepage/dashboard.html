@@ -5,7 +5,7 @@
     <link href='https://fonts.googleapis.com/css?family=ABeeZee' rel='stylesheet'>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Social Media UI</title>
+    <title>Dashboard</title>
     <style>
         body {
             margin: 0;
@@ -255,7 +255,7 @@
     <header id="header-placeholder"></header>
 
 <script>
-  fetch('header.html')
+  fetch('header2.html')
     .then(response => response.text())
     .then(data => {
       document.getElementById('header-placeholder').innerHTML = data;
@@ -411,5 +411,32 @@
     small.style.display = 'none';
   }
 }
+
+function logout() {
+        console.log("username:", localStorage.getItem('username'));
+        localStorage.setItem('username', "Guest");
+    localStorage.setItem('email', "Guest@ExAlumnos.com");
+    localStorage.setItem('college', "Gyan Ganga Group");
+    localStorage.setItem('branch', " ");
+    localStorage.setItem('year', "2003 - 2028");
+    localStorage.setItem('photo', "https://extralumnos.s3.us-east-1.amazonaws.com/images/profilePics/Usericon.png");
+    localStorage.setItem('banner', "https://extralumnos.s3.us-east-1.amazonaws.com/images/bannerPics/GuestBanner.png");
+    console.log("username:", localStorage.getItem('username'));
+    window.location.href = "index.html";
+    }
+
+    function createPost() {
+        const check = localStorage.getItem('email');
+        const title = document.querySelector('.create-post');
+        if (check == "Guest@ExAlumnos.com")
+    {
+        title.style.display = 'none';
+    }
+    else {
+        title.style.display = 'block';
+    }
+    }
+    
+    createPost();
 </script>
 </html>

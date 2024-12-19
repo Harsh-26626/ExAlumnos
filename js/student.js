@@ -12,7 +12,11 @@ const studentSchema = new mongoose.Schema({
   },
   bannerPic: {
     type: String, // URL of the banner picture
-  }
+  },
+  About: { type: String },
+  LinkedIn: { type: String },
+  Instat: { type: String },
+  Github: { type: String },
 });
 
 const Student = mongoose.model('Student', studentSchema);
