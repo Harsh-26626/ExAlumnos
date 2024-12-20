@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login as Alumni</title>
+    <link rel="stylesheet" href="css/loginalumni.css">
+    <link href="https://fonts.cdnfonts.com/css/halo-handletter" rel="stylesheet">
+
+    <style>
+        @import url('https://fonts.cdnfonts.com/css/halo-handletter');
+    </style>
+</head>
+<body>
+    <header id="header-placeholder"></header>
+    <script>
+        fetch('header.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('header-placeholder').innerHTML = data;
+            });
+    </script>
+
+    <div class="dgrade">
+        <form class="form" id="login-form">
+            <div class="title">Login as Alumni</div>
+            <div class="field" style="margin-top: 20px;">
+                <img class="input-icon" src="aticon.png">
+                <input type="text" id="email" placeholder="Email" class="input-field" required>
+            </div>
+            <div class="field" style="margin-top: 35px;">
+                <img class="input-icon" src="lockicon.png">
+                <input placeholder="Password" id="password" class="input-field" type="password" required>
+            </div>
+            <div id="error-message" style="color: red; margin-top: 10px;"></div>
+            <div class="btn">
+                <button type="submit" class="button1">Login</button>
+                <a class="button2" href="Aluminisignup.html">Sign Up</a>
+            </div>
+            <button type="button" class="button3">Forgot Password</button>
+        </form>
+    </div>
+    <script>
+        const allowedEmail = "admin@gmail.com"; // Replace with the allowed email
+        const allowedPassword = "password123";     // Replace with the allowed password
+
+        document.getElementById('login-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form from submitting normally
+
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            if (email === allowedEmail && password === allowedPassword) {
+                // Redirect to the next page if credentials are correct
+                window.location.href = "admint.html"; // Replace with the desired URL
+            } else {
+                // Show an error message if credentials are incorrect
+                document.getElementById('error-message').textContent = "Invalid email or password.";
+            }
+        });
+    </script>
+</body>
+</html>
