@@ -207,7 +207,43 @@ body {
     min-width: 160px;
 }
 
+.sort-post{
+    background: #fff;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
 
+#allicon {
+    height: 50px;
+    width: 50px; 
+    margin-left: 70px;
+}
+
+#acheivmenticon {
+    height: 50px;
+    width: 50px; 
+    margin-left: 250px;
+}
+
+#placement-advice{
+    height: 50px;
+    width: 50px; 
+    margin-left: 250px;
+}
+
+#Internship {
+    height: 50px;
+    width: 50px; 
+    margin-left: 250px;
+}
+
+#update {
+    height: 50px;
+    width: 50px; 
+    margin-left: 250px;
+}
 .post {
     background: #fff;
     padding: 15px;
