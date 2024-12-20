@@ -1,4 +1,4 @@
-const socket = io('http://chat-production-2e8d.up.railway.app');
+const socket = io('chat-production-2e8d.up.railway.app');
 
 const form = document.getElementById('send-container');
 const messageInput = document.getElementById('messageimp');
