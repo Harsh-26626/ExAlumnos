@@ -261,7 +261,7 @@ router.post('/student-login', async (req, res) => {
 
 // Create Post
 router.post('/post', async (req, res) => {
-  const {name, email, branch,title, post, year, profilePic, bannerPic} = req.body;
+  const {name, email, branch,title, post, year, profilePic, bannerPic, category} = req.body;
 
   try {
     const newPost = new Post({
@@ -273,6 +273,7 @@ router.post('/post', async (req, res) => {
       year,
       profilePic,
       bannerPic,
+      category,
     });
 
     await newPost.save();
