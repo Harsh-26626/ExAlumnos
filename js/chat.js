@@ -7,10 +7,8 @@ app.use(cors());
 
 const io = require('socket.io')(7000, {
     cors: {
-        origin: "http://127.0.0.1:5500",
-        methods: ["GET", "POST"], 
-        allowedHeaders: ["my-custom-header"], 
-        credentials: true 
+        origin: "*", // Allow all origins (use specific origin in production)
+        methods: ["GET", "POST"],
     }
 });
 
