@@ -9,6 +9,8 @@ const io = require('socket.io')(7000, {
     cors: {
         origin: "*", // Allow all origins (use specific origin in production)
         methods: ["GET", "POST"],
+        allowedHeaders: ["my-custom-header"], 
+        credentials: true 
     }
 });
 
