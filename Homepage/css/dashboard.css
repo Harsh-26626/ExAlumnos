@@ -156,13 +156,13 @@ body {
     font-size: 26px;
 }
 
+
 #post {
     padding-top: 18px;
     background: transparent;
     outline-style: none;
     border: none;
     box-shadow: 0 0 0;
-    width: 100%;
     font-size: 15px;
 }
 
@@ -176,6 +176,37 @@ body {
     border-radius: 5px;
     cursor: pointer;
 }
+
+
+.categorybtn {
+    display: flex;
+    justify-content: end;
+    background: #333;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+   
+}
+
+.post-category {
+    display: flex;
+    justify-content: end;
+    background: #333;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.category-content {
+    display: none;
+    position: absolute;
+    background-color: #333;
+    z-index: 1;
+    min-width: 160px;
+}
+
 
 .post {
     background: #fff;

@@ -46,12 +46,29 @@
         <div class="main">
             <!-- Create Post -->
             <form id="postForm">
-            <div class="create-post">
-                <input type="title" id="title" name="title" placeholder="Title" required>
-                <input type="text" id="post" name="post" placeholder="What's on your mind?" required>
-                <p></p>
-                <div style="display: flex; justify-content: end;"><button type="submit">Create a post</button></div>
+            <div class="create-post"> 
+                    
+                    <input type="title" id="title" name="title" placeholder="Title">
+                    <input type="text" id="post" name="post" placeholder="What's on your mind?">
+                    <p></p>
+
+                    <div style="display: flex; justify-content: space-between;">
+                        <button class="categorybtn" type="button">
+                            <select class="post-category" name="post-category" required>
+                                <option value="" disabled selected>Post Category</option>
+                                <option value="General">General</option>
+                                <option value="Achievements">Achievements</option>
+                                <option value="Placement Advice">Placement Advice</option>
+                                <option value="Internship Opportunity">Internship Opportunity</option>
+                                <option value="Updates">Updates</option>
+                            </select>
+                        </button>
+
+                        <div style="display: flex; justify-content: end;"><button type="submit">Create a post</button></div>
+                    </div>
             </div>
+
+            
             </form>
         </div>
     </div>
