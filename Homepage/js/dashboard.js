@@ -68,6 +68,7 @@ branch: branch,
 year: year,
 profilePic : photo,
 bannerPic : banner,
+category : formData.get('postcategory'),
 };
 
 try {

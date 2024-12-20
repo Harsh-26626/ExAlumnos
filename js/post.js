@@ -32,6 +32,10 @@ const postSchema = new mongoose.Schema({
   bannerPic: {
     type: String, // URL of the banner picture
     required: true,
+  },
+  category: {
+    type: String,
+    required: true,
   }
 });
 
