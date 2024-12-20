@@ -1,4 +1,11 @@
 
+function categoryset(inp) {
+    localStorage.setItem("cat", inp);
+    const posttContainer = document.querySelectorAll('.post');
+    posttContainer.forEach(post => post.remove());
+    fetchPost();
+}
+
 async function fetchPost() {
     try {
         const response = await fetch('http://localhost:3000/api/post');
@@ -6,6 +13,7 @@ async function fetchPost() {
 
         const postContainer = document.querySelector('.main');
         postData.forEach(post => {
+            if (post.category === localStorage.getItem('cat')) {
             const postCard = document.createElement('div');
             postCard.classList.add('post');
             postCard.innerHTML = `
@@ -20,11 +28,14 @@ async function fetchPost() {
             <p style="font-family: 'ABeeZee';">${post.post}</p>
             `;
             postContainer.appendChild(postCard);
+            }
         });
     } catch (error) {
         console.error('Error fetching post data:', error);
     }
 }
+
+
 function storeEmail(input) {
 console.log("Input value:", input);
 localStorage.setItem('input', input);
