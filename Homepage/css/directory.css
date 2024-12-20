@@ -15,12 +15,49 @@ body {
         margin-right: 15%;
     }
 
-    #gradYear {
+    #filters {
+        padding: 15px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+        width: 27%;
+        margin-left: 37%;
+    }
+
+    #collegeFilter {
         border-radius: 5px;
         background-color: #555;
         color: #fefefe;
         padding: 4px;
     }
+
+    #yearFilter {
+        border-radius: 5px;
+        background-color: #555;
+        color: #fefefe;
+        padding: 4px;
+        margin-top: 10px;
+        
+    }
+
+    #branchFilter {
+        border-radius: 5px;
+        background-color: #555;
+        color: #fefefe;
+        padding: 4px;
+        margin-top: 10px;
+    }
+
+    #applyFilters{
+        border-radius: 5px;
+        background-color: #111;
+        color: #fefefe;
+        padding: 4px;
+        width: 40%;
+        margin-left: 30%;
+        margin-top: 20px;
+
+    }
+
         .alumni-container {
             display: flex;
             justify-content: center;
