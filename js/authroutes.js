@@ -4,6 +4,7 @@ const User = require('./user');
 const Student = require('./student');
 const Post = require('./post');
 const Event = require('./events');
+const Job = require('./job');
 const multer = require('multer');
 const path = require('path');
 const { S3Client, PutObjectCommand } = require('@aws-sdk/client-s3');
@@ -488,20 +489,27 @@ router.post('/event', async (req, res) => {
   }
 });
 
-router.post('/jobposts', (req, res) => {
+router.post('/jobposts', async (req, res) => {
+  const {jobname, companyName, location, employmentType, jobDescription, qualifications, skills, eligibilityCriteria, salaryRange, aboutCompany, benefits, websiteLink} = req.body;
   try {
-    const formData = req.body;
 
-    // Perform any validations on formData here
-    if (!formData.name || !formData.companyName) {
-      return res.status(400).json({ message: 'Name and Company Name are required!' });
-    }
-
-    // Simulate saving to database (replace with actual database logic)
-    console.log('Form data received:', formData);
-
-    // Send success response
-    res.status(200).json({ message: 'Job post created successfully!' });
+    const newJob = new Job({
+      jobname,
+      companyName,
+      location, 
+      employmentType,
+      jobDescription,
+      qualifications,
+      skills,
+      eligibilityCriteria,
+      salaryRange,
+      aboutCompany,
+      benefits,
+      websiteLink,
+    });
+    
+    await newJob.save();
+    res.json({ message: 'Job Listed!' });
   } catch (error) {
     console.error('Server Error:', error);
     res.status(500).json({ message: 'Internal Server Error' });

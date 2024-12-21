@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        
+body {
+    font-family: Arial, sans-serif;
+    background-color: white;
+    margin: 0;
+  }
+
+  .background{
+        display: flex;
+        background-color: #fefefe;
+        margin-top: 25px;
+        padding: 50px;
+        border-radius: 15px;
+        margin-left: 15%;
+        margin-right: 15%;
+    }
+
+        .jobContainer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #fefefe;
+            margin-top: 25px;
+            flex-wrap: wrap;
+            gap: 20px;
+            cursor: pointer;
+        }
+
+        .job-card {
+            height: 500px;
+            width: 400px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .event-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .profile-banner {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .profile-photo {
+            height: 200px;
+            width: 200px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin-top: 10px;
+       }
+
+        .job-info {
+            padding: 15px;
+        }
+
+        .job-info h3 {
+            margin: 10px 0 5px;
+            font-size: 1.2em;
+        }
+
+        .job-info p {
+            margin: 5px 0;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+
+    <header id="header-placeholder"></header>
+
+    <script>
+      fetch('header2.html')
+        .then(response => response.text())
+        .then(data => {
+          document.getElementById('header-placeholder').innerHTML = data;
+        });
+    </script>
+
+    <h1 style="text-align: center;">Jobs</h1>
+
+    <div class="jobContainer" id="jobContainer"></div>
+    
+</body>
+<script>
+    async function fetchJobs() {
+    try {
+        const response = await fetch('http://localhost:3000/api/jobs');
+        const jobData = await response.json();
+        renderJobs(jobData);
+    } catch (error) {
+        console.error('Error fetching job data:', error);
+    }
+}
+
+function renderJobs(jobData) {
+    const jobContainer = document.getElementById('jobContainer');
+    jobContainer.innerHTML = ''; // Clear the container
+    jobData.forEach(job => {
+        const jobCard = document.createElement('div');
+        jobCard.onclick = () => storeJobId(`${job.id}`);
+        jobCard.classList.add('job-card');
+        jobCard.innerHTML = `
+            <div class="job-info">
+                <h1>${job.jobname}</h1>
+                <h2>${job.eligibilityCriteria}</h2>
+                <h3>${job.employmentType}</h3>
+                <h4>${job.companyName} - ${job.location}<h4>
+                <h5>${job.salaryRange}</h5>
+                <p>${job.jobDescription}</p>
+                <p>Qualification Required: ${job.qualifications}</p>
+                <p>Skills Required: ${job.skills}</p>
+                <p>About Company: ${job.aboutCompany}</p>
+                <p>Benifits: ${job.benefits}</p>
+                <p>Register Here: ${job.websiteLink}</p>
+            </div>
+        `;
+        jobContainer.appendChild(jobCard);
+    });
+}
+
+function storeJobId(jobId) {
+    localStorage.setItem('selectedJobId', jobId);
+    window.location.href = 'job-details'; // Redirect to job details page
+}
+
+fetchJobs();
+
+</script>
+</html>

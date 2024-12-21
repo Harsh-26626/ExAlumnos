@@ -36,7 +36,7 @@
 
                 
                 <label for="address"><p style="font-family:Georgia, 'Times New Roman', Times, serif; margin-top: 20px;">Location</p></label>
-                <input type="address" id="address" name="name" placeholder="Enter Address" required>
+                <input type="address" id="address" name="address" placeholder="Enter Address" required>
 
                 <div style="margin-top: 20px;">
                     <select style="margin-top: 10px;" class="employment" name="employment" required>
@@ -59,11 +59,8 @@
             </div>
 
             <div style="margin-top:30px; width: 35%; margin-left: 25%;">
-
-
-
                     <label for="skills"><p style="font-family:Georgia, 'Times New Roman', Times, serif; margin-top: 20px;">Skills</p></label>
-                    <input type="text" id="skills" name="edu" placeholder="Your skills" required>
+                    <input type="text" id="skills" name="skills" placeholder="Your skills" required>
 
                     <label for="EC"><p style="font-family:Georgia, 'Times New Roman', Times, serif;">Eligibilty Criteria</p></label>
                     <input type="text" id="EC" name="Eligibilty" placeholder="Eligibilty" required>
@@ -94,27 +91,29 @@
     <script>
     document.getElementById('jform').addEventListener('submit', async (event) => {
         event.preventDefault();
+
+        const formData = new FormData(event.target);
   
-  const formData = {
-    name: document.getElementById('name').value,
-    companyName: document.getElementById('cname').value,
-    location: document.getElementById('address').value,
-    employmentType: document.querySelector('.employment').value,
-    jobDescription: document.getElementById('jobD').value,
-    qualifications: document.getElementById('edu').value,
-    skills: document.getElementById('skills').value,
-    eligibilityCriteria: document.getElementById('EC').value,
-    salaryRange: document.querySelector('.range').value,
-    aboutCompany: document.getElementById('about').value,
-    benefits: document.getElementById('benefits').value,
-    websiteLink: document.getElementById('webl').value,
+  const jobData = {
+    jobname: formData.get('name'),
+    companyName: formData.get('Companyname'),
+    location: formData.get('address'),
+    employmentType: document.querySelector('.employment')?.value || '',
+    jobDescription: formData.get('jobD'),
+    qualifications: formData.get('edu'),
+    skills: formData.get('skills'),
+    eligibilityCriteria: formData.get('Eligibilty'),
+    salaryRange: document.querySelector('.range')?.value || '',
+    aboutCompany: formData.get('about'),
+    benefits: formData.get('benefits'),
+    websiteLink: formData.get('webl'),
   };
 
   try {
     const response = await fetch('http://localhost:3000/api/jobposts', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(formData),
+      body: JSON.stringify(jobData),
     });
 
     if (response.ok) {

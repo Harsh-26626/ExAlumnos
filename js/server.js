@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const Event = require('./events');
+const Job = require('./job');
 const connectDB = require('./db'); // Import the DB connection function
 const authRoutes = require('./authroutes'); // Import routes for authentication and other actions
 const io = require('socket.io')(8000)
@@ -57,6 +58,16 @@ app.get('/api/events', async (req, res) => {
         res.status(500).json({ error: 'Failed to fetch event data' });
     }
     });
+
+    app.get('/api/jobs', async (req, res) => {
+        try {
+            const jobs = await Job.find(); // Fetch all job data
+            res.json(jobs); // Send data as JSON
+        } catch (err) {
+            res.status(500).json({ error: 'Failed to fetch job data' });
+        }
+    });
+
 app.get('/api/post', async (req, res) => {
 try {
     const post = await Post.find();
