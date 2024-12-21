@@ -45,12 +45,12 @@
     <div class="main">
         <div id="chatbox">
             <div class="tmp">
-                <div class="message centre">Welcome to Subscriptions Page</div>
+                <div class="message">Welcome to Subscriptions Page</div>
             </div>
-            <div class="message centre">
+            <div class="box center">
                 <form id="subscribeform">
                     <div>
-                        <select style="margin-top: 20px;" class="Subscription" name="Subscription" onchange="sel(this.value)" required>
+                        <select class="Subscription" name="Subscription" onchange="sel(this.value)" required>
                             <option value="" disabled selected>Choose Your Plan</option>
                             <option value="dashboard_icons/99plan.png">1 Month</option>
                             <option value="dashboard_icons/199plan.png">3 Month</option>
@@ -65,6 +65,7 @@
             <div>
                 <img style="display: block; margin: auto; height: 400px; width: 300px;" src="dashboard_icons/99plan.png" id="subimg">
             </div>
+            <button onclick="done()" class="pbtn" type="submit">Pay</button>
         </div>
     </div>
 </div>
