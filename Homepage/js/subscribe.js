@@ -38,9 +38,6 @@ function sel(input) {
     document.getElementById('subimg').src = input;
 }
 
-function done() {
-    window.location.href = "dashboard.html";
-}
 
 document.addEventListener('DOMContentLoaded', function() {
     const payButton = document.getElementById('submit'); // Assuming you have a pay button
@@ -54,6 +51,7 @@ document.addEventListener('DOMContentLoaded', function() {
       }
   
       try {
+        console.log("sending email: ", email);
         const response = await fetch('http://localhost:3000/api/sub', {
           method: 'PUT',
           headers: {

@@ -383,7 +383,7 @@ router.post('/update-profile', upload.fields([{ name: 'profilePic' }, { name: 'b
   }
 });
 
-router.put('/api/subs', async (req, res) => {
+router.put('/sub', async (req, res) => {
   const { email } = req.body; // Retrieve email from request body
   
   try {
