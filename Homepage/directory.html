@@ -21,93 +21,126 @@
     <h1 style="text-align: center;">Alumni Directory</h1>
 
     <!-- Filter Section -->
-    <div style="text-align: center; margin-bottom: 20px;">
-        <label for="gradYear">Sort by : </label>
-        <select id="gradYear" onchange="filterByYear()">
-            <option value="">Select Year</option>
-            <option value="2024">2024</option>
-                            <option value="2023">2023</option>
-                            <option value="2022">2022</option>
-                            <option value="2021">2021</option>
-                            <option value="2020">2020</option>
-                            <option value="2019">2019</option>
-                            <option value="2018">2018</option>
-                            <option value="2017">2017</option>
-                            <option value="2016">2016</option>
-                            <option value="2015">2015</option>
-                            <option value="2014">2014</option>
-                            <option value="2013">2013</option>
-                            <option value="2012">2012</option>
-                            <option value="2011">2011</option>
-                            <option value="2010">2010</option>
-                            <option value="2009">2009</option>
-                            <option value="2008">2008</option>
-                            <option value="2007">2007</option>
-                            <option value="2006">2006</option>
-                            <option value="2005">2005</option>
-                            <option value="2004">2004</option>
-                            <option value="2003">2003</option>
-            <!-- Add more options as needed -->
-        </select>
+    <section id="filters">
+        <h1 style="text-align: center;">Filters</h1>
+        <div>
+            <label for="collegeFilter">College:</label>
+            <select id="collegeFilter">
+                <option value="">All Colleges</option>
+                <option value="Gyan Ganga Institute Of Technology And Sciences">Gyan Ganga Institute Of Technology And Sciences</option>
+                <option value="Gyan Ganga College Of Technology">Gyan Ganga College Of Technology</option>
+                <option value="Gyan Ganga College of Excellence">Gyan Ganga College of Excellence</option>
+            </select>
+        </div>
+        <div>
+            <label for="branchFilter">Branch:</label>
+            <select id="branchFilter">
+                <option value="">All Branches</option>
+                <option value="CSE">CSE</option>
+                <option value="AIML">AIML</option>
+                <option value="CSBS">CSBS</option>
+                <option value="IOT">IOT</option>
+                <option value="AIR">AIR</option>
+                <option value="IT">IT</option>
+                <option value="EC">EC</option>
+                <option value="EX">EX</option>
+                <option value="MECH">MECH</option>
+                <option value="CIVIL">CIVIL</option>
+            </select>
+        </div>
+        <div>
+            <label for="yearFilter">Grad Year:</label>
+            <select id="yearFilter">
+                <option value="">All Years</option>
+                <option value="2024">2024</option>
+                <option value="2023">2023</option>
+                <option value="2022">2022</option>
+                <option value="2021">2021</option>
+                <option value="2020">2020</option>
+                <option value="2019">2019</option>
+                <option value="2018">2018</option>
+                <option value="2017">2017</option>
+                <option value="2016">2016</option>
+                <option value="2015">2015</option>
+                <option value="2014">2014</option>
+                <option value="2013">2013</option>
+                <option value="2012">2012</option>
+                <option value="2011">2011</option>
+                <option value="2010">2010</option>
+                <option value="2009">2009</option>
+                <option value="2008">2008</option>
+                <option value="2007">2007</option>
+                <option value="2006">2006</option>
+                <option value="2005">2005</option>
+                <option value="2004">2004</option>
+                <option value="2003">2003</option>
+            </select>
+        </div>
+        <button id="applyFilters">Apply Filters</button>
+    </section>
+    
     </div>
 
     <div class="alumni-container" id="alumniContainer"></div>
 
     <script >
-      let alumniData = [];
+    async function fetchAlumni() {
+    try {
+        const response = await fetch('http://localhost:3000/api/alumni');
+        const alumniData = await response.json();
+        renderAlumni(alumniData);
 
-      // Function to fetch alumni data from API
-      async function fetchAlumni() {
-        try {
-            const response = await fetch('http://localhost:3000/api/alumni');
-            alumniData = await response.json(); // Store the alumni data globally
-            displayAlumni(alumniData); // Display all alumni initially
-        } catch (error) {
-            console.error('Error fetching alumni data:', error);
-        }
-      }
-
-      // Function to display alumni data
-      function displayAlumni(data) {
-        const alumniContainer = document.getElementById('alumniContainer');
-        alumniContainer.innerHTML = ''; // Clear the container before adding new data
-        data.forEach(alumni => {
-            const alumniCard = document.createElement('div');
-            alumniCard.onclick = () => storeEmail(`${alumni.email}`);
-            alumniCard.classList.add('alumni-card');
-            alumniCard.innerHTML = `
-                <img class="profile-photo" src="${alumni.profilePic}" alt="${alumni.name}">
-                <div class="alumni-info">
-                    <h3>${alumni.name}</h3>
-                    <p>${alumni.college}</p>
-                    <p>${alumni.branch} - Batch of ${alumni.year}</p>
-                </div>
-            `;
-            alumniContainer.appendChild(alumniCard);
+        // Add event listener to filters
+        document.getElementById('applyFilters').addEventListener('click', () => {
+            applyFilters(alumniData);
         });
-      }
+    } catch (error) {
+        console.error('Error fetching alumni data:', error);
+    }
+}
 
-      // Function to filter alumni by graduation year
-      function filterByYear() {
-        const selectedYear = document.getElementById('gradYear').value;
-        if (selectedYear) {
-            // Filter alumni by the selected year
-            const filteredAlumni = alumniData.filter(alumni => alumni.year === selectedYear);
-            displayAlumni(filteredAlumni); // Display filtered alumni
-        } else {
-            // If no year is selected, display all alumni
-            displayAlumni(alumniData);
-        }
-      }
+function renderAlumni(alumniData) {
+    const alumniContainer = document.getElementById('alumniContainer');
+    alumniContainer.innerHTML = ''; // Clear the container
+    alumniData.forEach(alumni => {
+        const alumniCard = document.createElement('div');
+        alumniCard.onclick = () => storeEmail(`${alumni.email}`);
+        alumniCard.classList.add('alumni-card');
+        alumniCard.innerHTML = `
+            <img class="profile-photo" src="${alumni.profilePic}" alt="${alumni.name}">
+            <div class="alumni-info">
+                <h3>${alumni.name}</h3>
+                <p>${alumni.college}</p>
+                <p>${alumni.branch} - Batch of ${alumni.year}</p>
+            </div>
+        `;
+        alumniContainer.appendChild(alumniCard);
+    });
+}
 
-      // Function to store email and navigate to profile page
-      function storeEmail(input) {
-          console.log("Input value:", input);
-          localStorage.setItem('input', input);
-          window.location.href = "viewprofile.html";
-      }
+function applyFilters(alumniData) {
+    const collegeFilter = document.getElementById('collegeFilter').value;
+    const branchFilter = document.getElementById('branchFilter').value;
+    const yearFilter = document.getElementById('yearFilter').value;
 
-      fetchAlumni(); // Fetch alumni data when the page loads
+    const filteredData = alumniData.filter(alumni => {
+        return (
+            (collegeFilter === '' || alumni.college === collegeFilter) &&
+            (branchFilter === '' || alumni.branch === branchFilter) &&
+            (yearFilter === '' || alumni.year === yearFilter)
+        );
+    });
+
+    renderAlumni(filteredData);
+}
+
+function storeEmail(email) {
+    localStorage.setItem('selectedEmail', email);
+    window.location.href = 'viewprofile.html';
+}
+
+fetchAlumni();
+
     </script>
 </body>
 </html>
