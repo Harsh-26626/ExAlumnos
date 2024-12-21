@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href='https://fonts.googleapis.com/css?family=Alkatra' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=ABeeZee' rel='stylesheet'>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subscribe</title>
+    <link rel="stylesheet" href="css/subscribe.css">
+</head>
+<body>
+    <header id="header-placeholder"></header>
+
+    <script>
+      fetch('header2.html')
+        .then(response => response.text())
+        .then(data => {
+          document.getElementById('header-placeholder').innerHTML = data;
+        });
+    </script>
+
+<div class="container">
+
+    <!-- Left Sidebar -->
+    <div class="sidebar">
+        <div><button class="menu-btn" onclick="toggleSidebar()">☰</button></div>
+        <!-- add name and email here -->
+        <div class="pfpcard">
+            <img id="photo" src="dashboard_icons/Usericon.png" alt="Usericon">
+            <b><div style="padding-bottom: 10px; font-family:Georgia, 'Times New Roman', Times, serif;">Welcome <span id = "username"></span>!</div></b>
+            <b><div style="padding-bottom: 10px; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;"><span id = "email"></span></div></b>
+        </div>
+        <div class="small" style="display: block; padding-top: 260px;">
+            <a href="dashboard.html"><img src="dashboard_icons/homeicon.png" style="height: 20px; width: 20px;"></a>
+            <a href="chat.html"><img src="dashboard_icons/messegeicon.png" style="height: 20px; width: 20px;"></a>
+            <a href="Profilepage.html"><img src="dashboard_icons/profileicon.png" style="height: 20px; width: 20px;"></a>
+            </div>
+        <div class="big" style="display: none;">
+        <a href="dashboard.html"><img src="dashboard_icons/homeicon.png" style="height: 20px; width: 20px;"> Home</a>
+        <a href="chat.html"><img src="dashboard_icons/messegeicon.png" style="height: 20px; width: 20px;"> Messages</a>
+        <a href="Profilepage.html"><img src="dashboard_icons/profileicon.png" style="height: 20px; width: 20px;"> Profile</a>
+        <p class="Contact-us"><a href="mailto:exalumnos.contact@gmail.com">Contact us :<br>exalumnos.contact@gmail.com</a></p>
+        </div>
+    </div>
+    <div class="main"></div>
+</div>
+
+<script src="./js/subscribe.js"></script>
+</body>
+</html>
