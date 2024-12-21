@@ -58,7 +58,7 @@ body {
 
     }
 
-        .alumni-container {
+        .event-container {
             display: flex;
             justify-content: center;
             align-items: center;
@@ -69,7 +69,7 @@ body {
             cursor: pointer;
         }
 
-        .alumni-card {
+        .event-card {
             height: 500px;
             width: 400px;
             border: 1px solid #ccc;
@@ -80,7 +80,7 @@ body {
             text-align: center;
         }
 
-        .alumni-card:hover {
+        .event-card:hover {
             transform: scale(1.05);
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
         }
@@ -92,23 +92,23 @@ body {
         }
 
         .profile-photo {
-            height: 380px;
-            width: 380px;
+            height: 200px;
+            width: 200px;
             object-fit: cover;
             border-radius: 50%;
             margin-top: 10px;
        }
 
-        .alumni-info {
+        .event-info {
             padding: 15px;
         }
 
-        .alumni-info h3 {
+        .event-info h3 {
             margin: 10px 0 5px;
             font-size: 1.2em;
         }
 
-        .alumni-info p {
+        .event-info p {
             margin: 5px 0;
             color: #555;
         }

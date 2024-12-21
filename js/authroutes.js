@@ -407,7 +407,7 @@ router.put('/sub', async (req, res) => {
 });
 
 router.post('/event', async (req, res) => {
-  const {name, email, branch,title, event, link, year, profilePic, bannerPic, category, location} = req.body;
+  const {name, email, branch, title, event, college, link, year, profilePic, bannerPic, category, location} = req.body;
 
   try {
     const newEvent = new Event({
@@ -416,6 +416,7 @@ router.post('/event', async (req, res) => {
       title,
       event,
       link,
+      college,
       branch,
       year,
       profilePic,
