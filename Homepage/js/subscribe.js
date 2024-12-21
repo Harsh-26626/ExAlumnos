@@ -65,3 +65,7 @@ small.style.display = 'none';
 function sel(input) {
     document.getElementById('subimg').src = input;
 }
+
+function done() {
+    window.location.href = "dashboard.html";
+}
