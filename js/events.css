@@ -1,0 +1,59 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #F8F8FF;
+}
+
+.eventform {
+    background: #fff;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.main {
+    text-align: center;
+    font-size: 4em;
+    padding: 30px;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.title {
+    background: transparent;
+    outline-style: none;
+    border: none;
+    box-shadow: 0 0 0;
+    width: 100%;
+    font-size: 26px;
+}
+
+.event {
+    padding-top: 18px;
+    background: transparent;
+    outline-style: none;
+    border: none;
+    box-shadow: 0 0 0;
+    font-size: 15px;
+}
+
+.ebtn {
+   justify-content: center;
+    display: flex;
+    background: #333;
+    color: #fff;
+    border: none;
+    width: 12%;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-left: 85%;
+}
+
+.ebtn button {
+    text-align: center;
+    padding: 12px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+}

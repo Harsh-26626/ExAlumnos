@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events</title>
+    <link rel="stylesheet" href="/js/events.css">
+</head>
+<body>
+    <header id="header-placeholder"></header>
+
+    <script>
+      fetch('header2.html')
+        .then(response => response.text())
+        .then(data => {
+          document.getElementById('header-placeholder').innerHTML = data;
+        });
+    </script>
+    
+        <div class="main">Events</div>
+
+        <form class="eventform">
+            <input type="title" class="title" placeholder="Title....">
+            <input type="text" class="event" placeholder="Event details ">
+            <div class="ebtn"><button type="submit">Create A Event</button></div>
+        </form>
+</body>
+</html>
