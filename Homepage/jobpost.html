@@ -23,7 +23,7 @@
             Job Postings
         </div>
 
-    <form class="form">
+    <form class="form" id="jform">
 
             <div style="margin-top:30px; width: 35%;">
 
@@ -86,10 +86,49 @@
                     <input type="text" id="webl" name="webl" placeholder="Link of the website" required> 
 
                 </div>
-     
+                <button type="submit" class="jbtn">Submit</button>
             </div>
-
     </form>
-              <button type="submit" class="jbtn">Submit</button>
+              
+
+    <script>
+    document.getElementById('jform').addEventListener('submit', async (event) => {
+        event.preventDefault();
+  
+  const formData = {
+    name: document.getElementById('name').value,
+    companyName: document.getElementById('cname').value,
+    location: document.getElementById('address').value,
+    employmentType: document.querySelector('.employment').value,
+    jobDescription: document.getElementById('jobD').value,
+    qualifications: document.getElementById('edu').value,
+    skills: document.getElementById('skills').value,
+    eligibilityCriteria: document.getElementById('EC').value,
+    salaryRange: document.querySelector('.range').value,
+    aboutCompany: document.getElementById('about').value,
+    benefits: document.getElementById('benefits').value,
+    websiteLink: document.getElementById('webl').value,
+  };
+
+  try {
+    const response = await fetch('http://localhost:3000/api/jobposts', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(formData),
+    });
+
+    if (response.ok) {
+      alert('Job post successfully submitted!');
+    } else {
+      const errorData = await response.json();
+      alert(`Error: ${errorData.message}`);
+    }
+  } catch (error) {
+    console.error('Error submitting form:', error);
+    alert('An unexpected error occurred.');
+  }
+});
+
+    </script>
 </body>
 </html>
