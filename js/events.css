@@ -37,16 +37,23 @@ body {
     font-size: 15px;
 }
 
+.link {
+    padding-top: 18px;
+    background: transparent;
+    outline-style: none;
+    border: none;
+    box-shadow: 0 0 0;
+    font-size: 15px;
+}
+
 .ebtn {
-   justify-content: center;
-    display: flex;
+    display: flex; 
+    justify-content: end;
     background: #333;
     color: #fff;
     border: none;
-    width: 12%;
     border-radius: 10px;
     cursor: pointer;
-    margin-left: 85%;
 }
 
 .ebtn button {
@@ -57,3 +64,38 @@ body {
     border: none;
     border-radius: 10px;
 }
+
+.eventcategory {
+    display: flex; 
+    background: #333;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    padding-top: 12px;
+}
+
+.eventcategory select {
+    background-color: #333;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.eventloc {
+    display: flex; 
+    background: #333;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    padding-top: 12px;
+}
+
+.eventloc select {
+    background-color: #333;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+

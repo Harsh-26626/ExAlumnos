@@ -3,6 +3,7 @@ const router = express.Router();
 const User = require('./user');
 const Student = require('./student');
 const Post = require('./post');
+const Event = require('./events');
 const multer = require('multer');
 const path = require('path');
 const { S3Client, PutObjectCommand } = require('@aws-sdk/client-s3');
@@ -380,6 +381,109 @@ router.post('/update-profile', upload.fields([{ name: 'profilePic' }, { name: 'b
   } catch (error) {
     console.error('Error updating profile:', error);
     res.status(500).json({ error: 'An error occurred during profile update.' });
+  }
+});
+
+router.put('/sub', async (req, res) => {
+  const { email } = req.body; // Retrieve email from request body
+  
+  try {
+      // Find the user by email and update their subscription status to "processing"
+      const user = await User.findOneAndUpdate(
+          { email: email }, 
+          { $set: { subscription: 'processing' } }, // Update status (if subscriptionStatus is not already in the schema, manage using separate collection or flag)
+          { new: true }
+      );
+      
+      if (!user) {
+          return res.status(404).json({ error: 'User not found' });
+      }
+
+      res.status(200).json({ message: 'Subscription is now processing.' });
+  } catch (error) {
+      console.error('Error during subscription processing:', error);
+      res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
+router.get('/pending/subscribers', async (req, res) => {
+  try {
+    console.log('Fetching pending subscribers'); // Log when the route is hit
+    
+    const pendingSubscribers = await User.find({ subscription: 'processing' });
+    
+    if (pendingSubscribers.length === 0) {
+      console.log('No pending subscribers found');
+      return res.status(200).json([]); // Return empty array if no pending subscribers
+    }
+
+    console.log('Pending subscribers:', pendingSubscribers); // Log the result
+    res.status(200).json(pendingSubscribers);
+  } catch (error) {
+    console.error('Error fetching pending subscribers:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
+router.put('/api/:action/subscriber/:subscriberId', async (req, res) => {
+  const { action, subscriberId } = req.params;
+
+  if (action !== 'approve' && action !== 'reject') {
+    return res.status(400).json({ error: 'Invalid action. Action must be "approve" or "reject".' });
+  }
+
+  try {
+    // Find the subscriber by their ID
+    const subscriber = await Subscriber.findById(subscriberId);
+    
+    if (!subscriber) {
+      return res.status(404).json({ error: 'Subscriber not found.' });
+    }
+
+    // Update subscription status
+    if (action === 'approve') {
+      subscriber.subscription = 'approved'; // Assuming your model has a `subscriptionStatus` field
+    } else if (action === 'reject') {
+      subscriber.subscription = 'rejected';
+    }
+
+    // Save the updated subscriber
+    await subscriber.save();
+
+    // Send success response
+    return res.json({
+      message: `Subscriber has been ${action === 'approve' ? 'approved' : 'rejected'}!`
+    });
+  } catch (error) {
+    console.error('Error updating subscriber:', error);
+    return res.status(500).json({ error: 'An error occurred while updating the subscriber.' });
+  }
+});
+
+
+router.post('/event', async (req, res) => {
+  const {name, email, branch,title, event, link, year, profilePic, bannerPic, category, location} = req.body;
+
+  try {
+    const newEvent = new Event({
+      name,
+      email,
+      title,
+      event,
+      link,
+      branch,
+      year,
+      profilePic,
+      bannerPic,
+      category,
+      location,
+    });
+
+    await newEvent.save();
+    res.json({ message: 'Event Created!' });
+  } catch (error) {
+    console.error('Cannot Create Event:', error);
+    res.status(500).json({ error: 'An error occurred while creating event.' });
   }
 });
 
