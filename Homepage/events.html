@@ -7,6 +7,16 @@
     <link rel="stylesheet" href="/js/events.css">
 </head>
 <body>
+    <header id="header-placeholder"></header>
+
+    <script>
+      fetch('header2.html')
+        .then(response => response.text())
+        .then(data => {
+          document.getElementById('header-placeholder').innerHTML = data;
+        });
+    </script>
+    
         <div class="main">Events</div>
 
         <form class="eventform">
