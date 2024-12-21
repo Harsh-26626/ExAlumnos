@@ -26,11 +26,13 @@
   </footer>
 
   <script>
-    document.addEventListener('DOMContentLoaded', function() {
+   document.addEventListener('DOMContentLoaded', function() {
   const pendingUsersList = document.getElementById('pendingUsersList');
+  const pendingSubscribersList = document.getElementById('pendingSubscribersList');
 
   // Fetch pending users when the page loads
   fetchPendingUsers();
+  fetchPendingSubscribers();
 
   // Fetch and display the list of pending users
   async function fetchPendingUsers() {
@@ -71,19 +73,19 @@
         <button class="reject" data-id="${user._id}">✖ Reject</button>
       </div>
     `;
-    
+
     // Add event listeners to the buttons
     userElement.querySelector('.approve').addEventListener('click', () => handleUserAction(user._id, 'approve'));
     userElement.querySelector('.reject').addEventListener('click', () => handleUserAction(user._id, 'reject'));
-    
+
     return userElement;
   }
 
-  // Handle approve or reject actions
+  // Handle approve or reject actions for users
   async function handleUserAction(userId, action) {
     const actionMessage = action === 'approve' ? 'approved' : 'rejected';
     try {
-      const response = await fetch(`http://localhost:3000/api/${action}/${userId}`, {
+      const response = await fetch(`http://localhost:3000/api/approve/${userId}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' }
       });
@@ -91,7 +93,7 @@
       if (response.ok) {
         const data = await response.json();
         alert(`${data.message || 'User has been '}${actionMessage}!`);
-        fetchPendingUsers(); // Refresh the list of pending users
+        fetchPendingUsers(); // Refresh the list of pending users after the action
       } else {
         const errorData = await response.json();
         alert(errorData.error || 'Error during the action');
@@ -101,18 +103,11 @@
       alert(`An unexpected error occurred while ${action} the user.`);
     }
   }
-  
-});
-document.addEventListener('DOMContentLoaded', function() {
-  const pendingSubscribersList = document.getElementById('pendingSubscribersList');
-
-  // Fetch pending subscribers when the page loads
-  fetchPendingSubscribers();
 
   // Fetch and display the list of pending subscribers
   async function fetchPendingSubscribers() {
     try {
-      const response = await fetch('http://localhost:3000/api/pending/subscribers'); // Adjust URL to your API endpoint
+      const response = await fetch('http://localhost:3000/api/pending/subscribers');
       if (!response.ok) {
         throw new Error('Failed to fetch pending subscribers');
       }
@@ -148,15 +143,15 @@ document.addEventListener('DOMContentLoaded', function() {
         <button class="reject" data-id="${subscriber._id}">✖ Reject</button>
       </div>
     `;
-    
+
     // Add event listeners to the buttons
     subscriberElement.querySelector('.approve').addEventListener('click', () => handleSubscriberAction(subscriber._id, 'approve'));
     subscriberElement.querySelector('.reject').addEventListener('click', () => handleSubscriberAction(subscriber._id, 'reject'));
-    
+
     return subscriberElement;
   }
 
-  // Handle approve or reject actions
+  // Handle approve or reject actions for subscribers
   async function handleSubscriberAction(subscriberId, action) {
     const actionMessage = action === 'approve' ? 'approved' : 'rejected';
     try {
@@ -168,7 +163,7 @@ document.addEventListener('DOMContentLoaded', function() {
       if (response.ok) {
         const data = await response.json();
         alert(`${data.message || 'Subscriber has been '}${actionMessage}!`);
-        fetchPendingSubscribers(); // Refresh the list of pending subscribers
+        fetchPendingSubscribers(); // Refresh the list of pending subscribers after the action
       } else {
         const errorData = await response.json();
         alert(errorData.error || 'Error during the action');
@@ -179,8 +174,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
 });
-
-
   </script>
 </body>
 </html>
