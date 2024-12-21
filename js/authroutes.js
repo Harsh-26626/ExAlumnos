@@ -383,5 +383,27 @@ router.post('/update-profile', upload.fields([{ name: 'profilePic' }, { name: 'b
   }
 });
 
+router.put('/api/subs', async (req, res) => {
+  const { email } = req.body; // Retrieve email from request body
+  
+  try {
+      // Find the user by email and update their subscription status to "processing"
+      const user = await User.findOneAndUpdate(
+          { email: email }, 
+          { $set: { subscription: 'processing' } }, // Update status (if subscriptionStatus is not already in the schema, manage using separate collection or flag)
+          { new: true }
+      );
+      
+      if (!user) {
+          return res.status(404).json({ error: 'User not found' });
+      }
+
+      res.status(200).json({ message: 'Subscription is now processing.' });
+  } catch (error) {
+      console.error('Error during subscription processing:', error);
+      res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
 
 module.exports=router;

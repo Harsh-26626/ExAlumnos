@@ -31,6 +31,11 @@ const userSchema = new mongoose.Schema({
     enum: ['pending', 'approved'],
     default: 'pending',
   },
+  subscription: {
+    type: String,
+    enum: ['false', 'processing', 'approved'],
+    default: 'false',
+  },
   profilePic: {
     type: String, // URL of the profile picture
   },
