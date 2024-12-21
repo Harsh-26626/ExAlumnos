@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Post</title>
+    <link rel="stylesheet" href="css/jobpost.css">
+</head>
+<body>
+
+    <header id="header-placeholder"></header>
+
+    <script>
+      fetch('header2.html')
+        .then(response => response.text())
+        .then(data => {
+          document.getElementById('header-placeholder').innerHTML = data;
+        });
+    </script>
+
+            
+        <div class="jpost">
+            Job Postings
+        </div>
+
+    <form class="form">
+
+            <div style="margin-top:30px; width: 35%;">
+
+                <div>
+                    <label for="name"><p style="font-family:Georgia, 'Times New Roman', Times, serif;">Name</p></label>
+                <input type="text" id="name" name="name" placeholder="Enter Your Name" required>
+
+                <label for="Companyname"><p style="font-family:Georgia, 'Times New Roman', Times, serif; margin-top: 20px;">Company Name</p></label>
+                <input type="text" id="cname" name="Companyname" placeholder="Enter Company's Name" required>
+
+                
+                <label for="address"><p style="font-family:Georgia, 'Times New Roman', Times, serif; margin-top: 20px;">Location</p></label>
+                <input type="address" id="address" name="name" placeholder="Enter Address" required>
+
+                <div style="margin-top: 20px;">
+                    <select style="margin-top: 10px;" class="employment" name="employment" required>
+                        <option value="" disabled selected>Employment type</option>
+                        <option value="Full time">• Full time</option>
+                        <option value="Part time">• Part time</option>
+                        <option value="Remote">• Remote</option>
+                    </select>
+                </div>
+                
+                </div>
+
+                <label for="jobD"><p style="font-family:Georgia, 'Times New Roman', Times, serif; margin-top: 20px;">Job Description</p></label>
+                <input type="text" id="jobD" name="jobD" placeholder="About job" required>
+
+                <label for="edu"><p style="font-family:Georgia, 'Times New Roman', Times, serif; margin-top: 20px;">Qualifications</p></label>
+                    <input type="text" id="edu" name="edu" placeholder="Your Education" required>
+
+
+            </div>
+
+            <div style="margin-top:30px; width: 35%; margin-left: 25%;">
+
+
+
+                    <label for="skills"><p style="font-family:Georgia, 'Times New Roman', Times, serif; margin-top: 20px;">Skills</p></label>
+                    <input type="text" id="skills" name="edu" placeholder="Your skills" required>
+
+                    <label for="EC"><p style="font-family:Georgia, 'Times New Roman', Times, serif;">Eligibilty Criteria</p></label>
+                    <input type="text" id="EC" name="Eligibilty" placeholder="Eligibilty" required>
+
+                <div style="margin-top: 20px;">
+                    <select style="margin-top: 10px;" class="range" name="range" required>
+                        <option value="" disabled selected>Salary Range</option>
+                        <option value="4 LPA - 8LPA">4 LPA - 8LPA</option>
+                        <option value="8 LPA - 12LPA">8 LPA - 12LPA</option>
+                        <option value="12 LPA - 16LPA">12 LPA - 16LPA</option>
+                    </select>
+
+                    <label for="about"><p style="font-family:Georgia, 'Times New Roman', Times, serif; margin-top: 20px;">About the Company</p></label>
+                    <input type="text" id="about" name="about" placeholder="Enter details" required>
+
+                    <label for="benefits"><p style="font-family:Georgia, 'Times New Roman', Times, serif; margin-top: 20px;">Benefits</p></label>
+                    <input type="text" id="benefits" name="benefits" placeholder="Enter details" required>
+
+                    <label for="text"><p style="font-family:Georgia, 'Times New Roman', Times, serif; margin-top: 20px;">Website Link</p></label>
+                    <input type="text" id="webl" name="webl" placeholder="Link of the website" required> 
+
+                </div>
+     
+            </div>
+
+    </form>
+              <button type="submit" class="jbtn">Submit</button>
+</body>
+</html>
