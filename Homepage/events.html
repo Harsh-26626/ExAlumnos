@@ -20,9 +20,30 @@
         <div class="main">Events</div>
 
         <form class="eventform">
-            <input type="title" class="title" placeholder="Title....">
-            <input type="text" class="event" placeholder="Event details ">
-            <div class="ebtn"><button type="submit">Create A Event</button></div>
+            <input type="title" class="title" placeholder="Title">
+            <input type="text" class="event" placeholder="Event details"><br>
+            <input type="text" class="link" placeholder="Registration Link...">
+            <div style="display: flex; justify-content: space-between; padding-top: 20px;">
+              <button class="eventcategory" type="button">
+                <select name="eventcategory" required>
+                    <option value="" disabled selected>Event Category</option>
+                    <option value="Conference">Conference</option>
+                    <option value="Webinar">Webinar</option>
+                    <option value="Workshop">Workshop</option>
+                    <option value="Reunion">Reunion</option>
+                    <option value="Casual Meetup">Casual Meetup</option>
+                </select>
+            </button>
+            <button class="eventloc" type="button">
+              <select name="eventloc" required>
+                  <option value="" disabled selected>Event Location</option>
+                  <option value="Online">Online</option>
+                  <option value="Offile">Offile</option>
+              </select>
+          </button>
+              <div style="display: flex; justify-content: end;" class="ebtn"><button type="submit">Create A Event</button></div>
+
+            </div>
         </form>
 </body>
 </html>
