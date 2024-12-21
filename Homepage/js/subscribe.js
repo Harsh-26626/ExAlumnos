@@ -41,3 +41,36 @@ function sel(input) {
 function done() {
     window.location.href = "dashboard.html";
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+    const payButton = document.getElementById('submit'); // Assuming you have a pay button
+    payButton.addEventListener('click', async function(e) {
+      e.preventDefault();
+  
+      const email = localStorage.getItem('email'); // Retrieve user email from localStorage
+      if (!email) {
+        alert('Please log in to subscribe.');
+        return;
+      }
+  
+      try {
+        const response = await fetch('http://localhost:3000/api/sub', {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ email: email }) // Send email in the request body
+        });
+  
+        const result = await response.json();
+        if (response.ok) {
+          alert(result.message || 'Subscription is now processing.');
+        } else {
+          alert(result.error || 'Failed to process subscription.');
+        }
+      } catch (error) {
+        console.error('Error while processing subscription:', error);
+        alert('An error occurred while processing your subscription.');
+      }
+    });
+  });
