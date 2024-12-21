@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const bodyParser = require('body-parser');
+const Event = require('./events');
 const connectDB = require('./db'); // Import the DB connection function
 const authRoutes = require('./authroutes'); // Import routes for authentication and other actions
 const io = require('socket.io')(8000)
@@ -48,6 +49,14 @@ try {
     res.status(500).json({ error: 'Failed to fetch alumni data' });
 }
 });
+app.get('/api/events', async (req, res) => {
+    try {
+        const event = await Event.find(); // Fetch only alumni with status 'pending'
+        res.json(event); // Send data as JSON
+    } catch (err) {
+        res.status(500).json({ error: 'Failed to fetch event data' });
+    }
+    });
 app.get('/api/post', async (req, res) => {
 try {
     const post = await Post.find();

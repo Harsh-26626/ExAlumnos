@@ -21,6 +21,10 @@ const eventSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  college: {
+    type: String,
+    required: true,
+  },
   link: {
     type: String,
     required: true,

@@ -2,6 +2,8 @@
 const username = localStorage.getItem('username');
 const email = localStorage.getItem('email');
 
+const college = localStorage.getItem('college');
+
 const photo = localStorage.getItem('photo');
 
 const banner = localStorage.getItem('banner');
@@ -18,6 +20,7 @@ document.getElementById('eventform').addEventListener('submit', async (event) =>
     name: username,
     email: email,
     title: formData.get('title'),
+    college: college,
     event: formData.get('event'),
     link: formData.get('link'),
     branch: branch,
