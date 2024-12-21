@@ -3,6 +3,7 @@ const router = express.Router();
 const User = require('./user');
 const Student = require('./student');
 const Post = require('./post');
+const Event = require('./events');
 const multer = require('multer');
 const path = require('path');
 const { S3Client, PutObjectCommand } = require('@aws-sdk/client-s3');
@@ -459,6 +460,32 @@ router.put('/api/:action/subscriber/:subscriberId', async (req, res) => {
   }
 });
 
+
+router.post('/event', async (req, res) => {
+  const {name, email, branch,title, event, link, year, profilePic, bannerPic, category, location} = req.body;
+
+  try {
+    const newEvent = new Event({
+      name,
+      email,
+      title,
+      event,
+      link,
+      branch,
+      year,
+      profilePic,
+      bannerPic,
+      category,
+      location,
+    });
+
+    await newEvent.save();
+    res.json({ message: 'Event Created!' });
+  } catch (error) {
+    console.error('Cannot Create Event:', error);
+    res.status(500).json({ error: 'An error occurred while creating event.' });
+  }
+});
 
 
 module.exports=router;
