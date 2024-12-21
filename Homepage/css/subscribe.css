@@ -242,30 +242,47 @@ color: #ddd;
   }
 
   .message {
-    width: 30%;
     padding: 10px;
     margin-top: 15px;
-    background-color: #999;
-    border-radius: 30px;
+    font-family: 'Times New Roman', Times, serif;
+    text-align: center;
+    font-size: 3em;
 }
 
-.left {
-    float: left;
-    clear: both;
-    margin-left: 10px;
+.box {
+    width: 30%;
+    padding: 10px;
+    margin-top: 2%;
+    background-color: #333;
+    border-radius: 10px;
+    margin-left: 32%;
 }
 
-.right {
-    float: right;
-    clear: both;
-    margin-right: 10px;
+
+.Subscription {
+    display: flex;
+    background: #333;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 28%;
+    padding: 5px;
+    margin-bottom: 2% ;
+    
+   
 }
 
-.centre {
+.pbtn {
     display: block;
     margin: auto;
-    clear: both;
-    margin-top: 20px;
-    text-align: center;
-    font-size: 20px;
+    border: none;
+    background-color: #333;
+    color: #fff;
+    padding: 5px;
+    width: 9%;
+    height: 5%;
+    font-size: 18px;
+    border-radius: 4px;
+    padding: 5px 5px 5px 5px;
 }
