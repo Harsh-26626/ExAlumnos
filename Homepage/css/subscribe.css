@@ -222,29 +222,50 @@ background-color: #272626;
 color: #ddd;
 }
 
-.post {
-    background: #fff;
-    padding: 15px;
-    border-radius: 10px;
-    margin-bottom: 20px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.post-header {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-}
-
-.post-header img {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    margin-right: 10px;
-}
-
 .Contact-us{
     padding-top: 60px;
     text-align: center;
-    
+}
+
+#chatbox {
+    height: 80vh;
+    width: 1000px;
+    margin: auto;
+    background-color: #F4F6FF;
+    border-radius: 15px;
+    padding-top: 10px;
+    overflow-y: auto;
+}
+
+.chatbox::-webkit-scrollbar {
+    display: none;
+  }
+
+  .message {
+    width: 30%;
+    padding: 10px;
+    margin-top: 15px;
+    background-color: #999;
+    border-radius: 30px;
+}
+
+.left {
+    float: left;
+    clear: both;
+    margin-left: 10px;
+}
+
+.right {
+    float: right;
+    clear: both;
+    margin-right: 10px;
+}
+
+.centre {
+    display: block;
+    margin: auto;
+    clear: both;
+    margin-top: 20px;
+    text-align: center;
+    font-size: 20px;
 }

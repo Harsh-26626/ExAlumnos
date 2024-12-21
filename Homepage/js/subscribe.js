@@ -61,3 +61,7 @@ big.style.display = 'block';
 small.style.display = 'none';
 }
 }
+
+function sel(input) {
+    document.getElementById('subimg').src = input;
+}

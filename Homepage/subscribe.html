@@ -42,7 +42,31 @@
         <p class="Contact-us"><a href="mailto:exalumnos.contact@gmail.com">Contact us :<br>exalumnos.contact@gmail.com</a></p>
         </div>
     </div>
-    <div class="main"></div>
+    <div class="main">
+        <div id="chatbox">
+            <div class="tmp">
+                <div class="message centre">Welcome to Subscriptions Page</div>
+            </div>
+            <div class="message centre">
+                <form id="subscribeform">
+                    <div>
+                        <select style="margin-top: 20px;" class="Subscription" name="Subscription" onchange="sel(this.value)" required>
+                            <option value="" disabled selected>Choose Your Plan</option>
+                            <option value="dashboard_icons/99plan.png">1 Month</option>
+                            <option value="dashboard_icons/199plan.png">3 Month</option>
+                            <option value="dashboard_icons/299plan.png">6 Month</option>
+                            <option value="dashboard_icons/499plan.png">1 Year</option>
+                            <option value="dashboard_icons/fund.png">Alumni Fund</option>
+                        </select>
+                    </div>
+                    <button style="display: block; margin: auto;" type="submit">Pay</button>
+                </form>
+            </div>
+            <div>
+                <img style="display: block; margin: auto; height: 400px; width: 300px;" src="dashboard_icons/99plan.png" id="subimg">
+            </div>
+        </div>
+    </div>
 </div>
 
 <script src="./js/subscribe.js"></script>
