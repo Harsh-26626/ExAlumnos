@@ -1,7 +1,7 @@
 
 body {
     font-family: Arial, sans-serif;
-    background-color: white;
+    background-color: #F8F8FF;
     margin: 0;
   }
 
@@ -62,7 +62,6 @@ body {
             display: flex;
             justify-content: center;
             align-items: center;
-            background-color: #fefefe;
             margin-top: 25px;
             flex-wrap: wrap;
             gap: 20px;
