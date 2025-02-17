@@ -215,34 +215,41 @@ body {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
+#selectcategory {
+    display: flex;
+    justify-content: space-between;
+}
+
 #allicon {
     height: 50px;
-    width: 50px; 
-    margin-left: 70px;
+    width: 50px;
+    margin-left: 20px;
+    cursor: pointer;
 }
 
 #acheivmenticon {
     height: 50px;
     width: 50px; 
-    margin-left: 250px;
+    cursor: pointer;
 }
 
 #placement-advice{
     height: 50px;
     width: 50px; 
-    margin-left: 250px;
+    cursor: pointer;
 }
 
 #Internship {
     height: 50px;
     width: 50px; 
-    margin-left: 250px;
+    cursor: pointer;
 }
 
 #update {
     height: 50px;
     width: 50px; 
-    margin-left: 250px;
+    margin-right: 20px;
+    cursor: pointer;
 }
 .post {
     background: #fff;
