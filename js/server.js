@@ -7,6 +7,7 @@ const Job = require('./job');
 const connectDB = require('./db'); // Import the DB connection function
 const authRoutes = require('./authroutes'); // Import routes for authentication and other actions
 const io = require('socket.io')(8000)
+const os = require('os');
 
 const app = express();
 
@@ -107,9 +108,7 @@ app.listen(PORT, () => {
   const interfaces = os.networkInterfaces();
     for (const name in interfaces) {
       for (const iface of interfaces[name]) {
-        if (iface.family === 'IPv6' && !iface.internal) {
           console.log(`Server running at http://${iface.address}:${PORT}`);
-        }
       }
     }
 });
