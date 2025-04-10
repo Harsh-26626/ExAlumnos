@@ -71,6 +71,7 @@ app.get('/api/events', async (req, res) => {
 
 app.get('/api/post', async (req, res) => {
 try {
+    console.log("Fetching posts...");
     const post = await Post.find();
     res.json(post); // Send data as JSON
 } catch (err) {
