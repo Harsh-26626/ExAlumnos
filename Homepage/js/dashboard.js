@@ -58,7 +58,11 @@ document.getElementById('email').textContent = 'guest@Exalumnous.com';
 }
 
 const photo = localStorage.getItem('photo');
+if (photo) {
 document.getElementById('photo').src = photo;
+} else {
+document.getElementById('photo').src = 'https://extralumnos.s3.us-east-1.amazonaws.com/images/profilePics/Usericon.png';
+}
 
 const banner = localStorage.getItem('banner');
 
