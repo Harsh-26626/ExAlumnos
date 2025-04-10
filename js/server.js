@@ -103,15 +103,13 @@ app.use('/api', authRoutes); // Routes are defined in authroutes.js
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
-});
 
-server.listen(PORT, () => {
-    const interfaces = os.networkInterfaces();
+  const interfaces = os.networkInterfaces();
     for (const name in interfaces) {
       for (const iface of interfaces[name]) {
-        if (iface.family === 'IPv4' && !iface.internal) {
+        if (iface.family === 'IPv6' && !iface.internal) {
           console.log(`Server running at http://${iface.address}:${PORT}`);
         }
       }
     }
-  });
+});
