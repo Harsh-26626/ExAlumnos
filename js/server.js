@@ -14,7 +14,9 @@ const app = express();
 app.use('/Homepage', express.static('Homepage'));
 
 // Enable CORS
-app.use(cors());
+app.use(cors({
+    origin: "https://harsh-26626.github.io/"
+}));
 
 // Connect to MongoDB
 connectDB();

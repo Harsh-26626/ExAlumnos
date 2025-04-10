@@ -8,7 +8,7 @@ function categoryset(inp) {
 
 async function fetchPost() {
     try {
-        const response = await fetch('https://exalumnos-production.up.railway.app/post');
+        const response = await fetch('https://exalumnos-production.up.railway.app/api/post', { method: 'GET' });
         const postData = await response.json();
 
         const postContainer = document.querySelector('.main');
